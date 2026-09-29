@@ -15,19 +15,16 @@
   --btn-bg: #121317;
   --btn-text: #ffffff;
   --btn-hover: #34363b;
-  --primary: #1a73e8;
-  --primary-hover: #1765cc;
-  --primary-text: #ffffff;
-  --link: #1a73e8;
+  --accent: #3fc904;
+  --primary: var(--accent);
+  --primary-hover: #37b303;
+  --primary-text: #121317;
+  --link: #278200;
   --doodle: #80868b;
-  --blue: #4285f4;
-  --yellow: #fbbc04;
-  --red: #ea4335;
-  --green: #34a853;
   --quote-bg: #121317;
   --quote-border: transparent;
   --form-surface: #ffffff;
-  --focus: #1a73e8;
+  --focus: #278200;
   --moon-display: block;
   --sun-display: none;
 
@@ -53,18 +50,14 @@
     --btn-bg: #eceef1;
     --btn-text: #121317;
     --btn-hover: #ffffff;
-    --primary: #8ab4f8;
-    --primary-hover: #aecbfa;
+    --primary: var(--accent);
+    --primary-hover: #5ad62a;
     --primary-text: #121317;
-    --link: #8ab4f8;
+    --link: var(--accent);
     --doodle: #80868b;
-    --blue: #8ab4f8;
-    --yellow: #fdd663;
-    --red: #f28b82;
-    --green: #81c995;
     --quote-bg: #1b1c21;
     --quote-border: #30323a;
-    --focus: #8ab4f8;
+    --focus: var(--accent);
     --moon-display: none;
     --sun-display: block;
     color-scheme: dark;
@@ -83,18 +76,14 @@
   --btn-bg: #eceef1;
   --btn-text: #121317;
   --btn-hover: #ffffff;
-  --primary: #8ab4f8;
-  --primary-hover: #aecbfa;
+  --primary: var(--accent);
+  --primary-hover: #5ad62a;
   --primary-text: #121317;
-  --link: #8ab4f8;
+  --link: var(--accent);
   --doodle: #80868b;
-  --blue: #8ab4f8;
-  --yellow: #fdd663;
-  --red: #f28b82;
-  --green: #81c995;
   --quote-bg: #1b1c21;
   --quote-border: #30323a;
-  --focus: #8ab4f8;
+  --focus: var(--accent);
   --moon-display: none;
   --sun-display: block;
   color-scheme: dark;
@@ -167,10 +156,7 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* SVG color helpers (presentation attributes can't read CSS variables) */
-.f-blue { fill: var(--blue); }
-.f-yellow { fill: var(--yellow); }
-.f-red { fill: var(--red); }
-.f-green { fill: var(--green); }
+.f-accent { fill: var(--accent); }
 .s-doodle { stroke: var(--doodle); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- Buttons ---------- */
@@ -421,7 +407,7 @@ img, svg { display: block; max-width: 100%; }
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--dot, var(--blue));
+  background: var(--accent);
 }
 .h2 {
   font-size: clamp(2rem, 4.6vw, 3.25rem);
@@ -434,10 +420,6 @@ img, svg { display: block; max-width: 100%; }
   font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
 }
 
-.dot-blue { --dot: var(--blue); }
-.dot-yellow { --dot: var(--yellow); }
-.dot-red { --dot: var(--red); }
-.dot-green { --dot: var(--green); }
 
 /* ---------- Audience cards ---------- */
 .cards {
@@ -450,7 +432,7 @@ img, svg { display: block; max-width: 100%; }
   flex-direction: column;
   gap: 12px;
   min-height: 340px;
-  padding: 32px;
+  padding: clamp(24px, 3vw, 32px);
   border-radius: var(--radius-lg);
   background: var(--card);
   color: var(--text-body);
@@ -458,7 +440,7 @@ img, svg { display: block; max-width: 100%; }
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 a.card:hover { background: var(--card-hover); transform: translateY(-2px); }
-.card-art { width: 120px; height: 80px; margin-bottom: auto; }
+.card-art { width: 120px; height: 80px; }
 .card h3 {
   margin-top: 32px;
   font-size: clamp(1.5rem, 2.4vw, 2rem);
@@ -469,7 +451,9 @@ a.card:hover { background: var(--card-hover); transform: translateY(-2px); }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 16px;
   color: var(--text);
   font-weight: 500;
 }
@@ -514,7 +498,7 @@ a.card:hover .card-link svg { transform: translateX(3px); }
   place-items: center;
   width: 52px;
   height: 52px;
-  border: 2px solid var(--dot, var(--blue));
+  border: 2px solid var(--accent);
   border-radius: 50%;
   background: var(--bg);
   color: var(--text);
@@ -573,9 +557,9 @@ a.card:hover .card-link svg { transform: translateX(3px); }
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(38% 60% at 88% 12%, rgba(66, 133, 244, 0.42), transparent 70%),
-    radial-gradient(30% 50% at 6% 96%, rgba(251, 188, 4, 0.26), transparent 70%),
-    radial-gradient(28% 45% at 62% 115%, rgba(52, 168, 83, 0.3), transparent 70%);
+    radial-gradient(38% 60% at 88% 12%, rgba(63, 201, 4, 0.38), transparent 70%),
+    radial-gradient(30% 50% at 6% 96%, rgba(63, 201, 4, 0.2), transparent 70%),
+    radial-gradient(28% 45% at 62% 115%, rgba(63, 201, 4, 0.26), transparent 70%);
 }
 .quote-panel p {
   max-width: 24ch;
@@ -595,10 +579,7 @@ a.card:hover .card-link svg { transform: translateX(3px); }
 }
 .quote-panel cite { font-style: normal; }
 .quote-dots { display: flex; gap: 6px; }
-.quote-dots i { width: 8px; height: 8px; border-radius: 50%; }
-.bg-blue { background: var(--blue); }
-.bg-yellow { background: var(--yellow); }
-.bg-green { background: var(--green); }
+.quote-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 
 /* ---------- Reviews ---------- */
 .reviews {
@@ -614,7 +595,7 @@ a.card:hover .card-link svg { transform: translateX(3px); }
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
 }
-.review-mark { width: 32px; height: 24px; color: var(--dot, var(--blue)); }
+.review-mark { width: 32px; height: 24px; color: var(--accent); }
 .review h3 { font-size: 1.25rem; font-weight: 500; }
 .review p { color: var(--text-body); }
 .reviews-note { margin-top: 16px; color: var(--text-muted); font-size: 0.875rem; }
@@ -774,7 +755,7 @@ a.card:hover .card-link svg { transform: translateX(3px); }
   place-items: center;
   width: 32px;
   height: 32px;
-  border: 2px solid var(--dot, var(--blue));
+  border: 2px solid var(--accent);
   border-radius: 50%;
   color: var(--text);
   font-size: 0.875rem;
