@@ -15,16 +15,20 @@
   --btn-bg: #121317;
   --btn-text: #ffffff;
   --btn-hover: #34363b;
-  --accent: #3fc904;
-  --primary: var(--accent);
-  --primary-hover: #37b303;
-  --primary-text: #121317;
-  --link: #278200;
+  /* Brand colour: change it here, every other green is derived from it. */
+  --primary: #186e03;
+  --primary-light: color-mix(in srgb, var(--primary) 60%, #ffffff);
+
+  --accent: var(--primary);
+  --btn-primary-bg: var(--primary);
+  --btn-primary-hover: color-mix(in srgb, var(--primary) 85%, #000000);
+  --btn-primary-text: #ffffff;
+  --link: var(--primary);
   --doodle: #80868b;
   --quote-bg: #121317;
   --quote-border: transparent;
   --form-surface: #ffffff;
-  --focus: #278200;
+  --focus: var(--primary);
   --moon-display: block;
   --sun-display: none;
 
@@ -50,14 +54,15 @@
     --btn-bg: #eceef1;
     --btn-text: #121317;
     --btn-hover: #ffffff;
-    --primary: var(--accent);
-    --primary-hover: #5ad62a;
-    --primary-text: #121317;
-    --link: var(--accent);
+    --accent: var(--primary-light);
+    --btn-primary-bg: var(--primary-light);
+    --btn-primary-hover: color-mix(in srgb, var(--primary) 45%, #ffffff);
+    --btn-primary-text: #121317;
+    --link: var(--primary-light);
     --doodle: #80868b;
     --quote-bg: #1b1c21;
     --quote-border: #30323a;
-    --focus: var(--accent);
+    --focus: var(--primary-light);
     --moon-display: none;
     --sun-display: block;
     color-scheme: dark;
@@ -76,14 +81,15 @@
   --btn-bg: #eceef1;
   --btn-text: #121317;
   --btn-hover: #ffffff;
-  --primary: var(--accent);
-  --primary-hover: #5ad62a;
-  --primary-text: #121317;
-  --link: var(--accent);
+  --accent: var(--primary-light);
+  --btn-primary-bg: var(--primary-light);
+  --btn-primary-hover: color-mix(in srgb, var(--primary) 45%, #ffffff);
+  --btn-primary-text: #121317;
+  --link: var(--primary-light);
   --doodle: #80868b;
   --quote-bg: #1b1c21;
   --quote-border: #30323a;
-  --focus: var(--accent);
+  --focus: var(--primary-light);
   --moon-display: none;
   --sun-display: block;
   color-scheme: dark;
@@ -181,8 +187,8 @@ img, svg { display: block; max-width: 100%; }
 .btn-sm { min-height: 40px; padding: 8px 18px; font-size: 0.9375rem; }
 .btn-dark { background: var(--btn-bg); color: var(--btn-text); }
 .btn-dark:hover { background: var(--btn-hover); }
-.btn-primary { background: var(--primary); color: var(--primary-text); }
-.btn-primary:hover { background: var(--primary-hover); }
+.btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
+.btn-primary:hover { background: var(--btn-primary-hover); }
 .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
 .btn-outline:hover { background: var(--card); }
 .btn .arrow { width: 18px; height: 18px; transition: transform 0.15s ease; }
@@ -304,8 +310,8 @@ img, svg { display: block; max-width: 100%; }
   .site-nav ul { flex-direction: column; }
   .site-nav a { padding: 14px 12px; border-radius: 12px; font-size: 1.0625rem; }
   .site-nav .nav-cta-mobile { display: block; margin-top: 12px; }
-  .site-nav .nav-cta-mobile .btn { display: flex; width: 100%; padding: 12px 24px; color: var(--primary-text); }
-  .site-nav .nav-cta-mobile .btn:hover { background: var(--primary-hover); }
+  .site-nav .nav-cta-mobile .btn { display: flex; width: 100%; padding: 12px 24px; color: var(--btn-primary-text); }
+  .site-nav .nav-cta-mobile .btn:hover { background: var(--btn-primary-hover); }
 }
 
 /* ---------- Hero ---------- */
@@ -557,9 +563,9 @@ a.card:hover .card-link svg { transform: translateX(3px); }
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(38% 60% at 88% 12%, rgba(63, 201, 4, 0.38), transparent 70%),
-    radial-gradient(30% 50% at 6% 96%, rgba(63, 201, 4, 0.2), transparent 70%),
-    radial-gradient(28% 45% at 62% 115%, rgba(63, 201, 4, 0.26), transparent 70%);
+    radial-gradient(38% 60% at 88% 12%, color-mix(in srgb, var(--primary-light) 38%, transparent), transparent 70%),
+    radial-gradient(30% 50% at 6% 96%, color-mix(in srgb, var(--primary-light) 20%, transparent), transparent 70%),
+    radial-gradient(28% 45% at 62% 115%, color-mix(in srgb, var(--primary-light) 26%, transparent), transparent 70%);
 }
 .quote-panel p {
   max-width: 24ch;
@@ -579,7 +585,7 @@ a.card:hover .card-link svg { transform: translateX(3px); }
 }
 .quote-panel cite { font-style: normal; }
 .quote-dots { display: flex; gap: 6px; }
-.quote-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.quote-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--primary-light); }
 
 /* ---------- Reviews ---------- */
 .reviews {
