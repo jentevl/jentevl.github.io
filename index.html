@@ -90,7 +90,6 @@
 				<header class="section-head reveal">
 					<p class="eyebrow">Voor wie</p>
 					<h2 class="h2">Wat zoek jij?</h2>
-					<p class="lead">Twijfels over de praktische aanpak van je onderneming? Op zoek naar iemand om mee te bouwen, of iemand die er al stond? We zoeken de persoon die bij jou en je plannen past.</p>
 				</header>
 
 				<div class="cards">
@@ -136,25 +135,40 @@
 					<p class="lead">Geen eindeloze profielen om door te scrollen. Gewoon een goed gesprek en een persoonlijke match.</p>
 				</header>
 
-				<ol class="steps">
-					<li class="step reveal">
-						<h3>Meld je aan</h3>
-						<p>Vul het korte formulier in: wie je bent, waar je aan werkt en wat je zoekt.</p>
-					</li>
-					<li class="step reveal">
-						<h3>Kennismaking</h3>
-						<p>Jente neemt contact met je op voor een gesprek over je plannen en wat je nodig hebt.</p>
-					</li>
-					<li class="step reveal">
-						<h3>Betaling</h3>
-						<p>Klikt het? Dan ontvang je een betaallink per e-mail.</p>
-						<span class="chip">Pas na het gesprek</span>
-					</li>
-					<li class="step reveal">
-						<h3>De ontmoeting</h3>
-						<p>Jente zoekt de juiste match in het netwerk en regelt een eerste afspraak tussen jullie.</p>
-					</li>
-				</ol>
+				<div class="timeline">
+					<div class="timeline-track" aria-hidden="true"><span class="timeline-fill"></span><span class="timeline-head"></span></div>
+					<ol class="steps">
+						<li class="step">
+							<span class="step-dot" aria-hidden="true">1</span>
+							<div class="step-body">
+								<h3>Meld je aan</h3>
+								<p>Vul het korte formulier in: wie je bent, waar je aan werkt en wat je zoekt.</p>
+							</div>
+						</li>
+						<li class="step">
+							<span class="step-dot" aria-hidden="true">2</span>
+							<div class="step-body">
+								<h3>Kennismaking</h3>
+								<p>We nemen contact met je op voor een gesprek over je plannen en wat je nodig hebt.</p>
+							</div>
+						</li>
+						<li class="step">
+							<span class="step-dot" aria-hidden="true">3</span>
+							<div class="step-body">
+								<h3>Betaling</h3>
+								<p>Klikt het? Dan ontvang je een betaallink per e-mail.</p>
+								<span class="chip">Pas na het gesprek</span>
+							</div>
+						</li>
+						<li class="step">
+							<span class="step-dot" aria-hidden="true">4</span>
+							<div class="step-body">
+								<h3>De ontmoeting</h3>
+								<p>We zoeken de juiste match in ons netwerk en regelen een eerste afspraak tussen jullie.</p>
+							</div>
+						</li>
+					</ol>
+				</div>
 			</div>
 		</section>
 
@@ -163,18 +177,18 @@
 			<div class="container">
 				<figure class="quote-panel reveal">
 					<blockquote>
-						<p>“De eerste stappen als ondernemer kunnen overweldigend zijn. De juiste partner of mentor maakt het verschil.”</p>
+						<p>“Ondernemen kan overweldigend zijn. De juiste partner of mentor verricht wonderen.”</p>
 					</blockquote>
 					<figcaption>
 						<span class="quote-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-						<cite>Jente, Nudged</cite>
+						<cite>Het Nudged-team</cite>
 					</figcaption>
 				</figure>
 			</div>
 		</section>
 
 		<!-- Ervaringen -->
-		<!-- TODO Jente: bevestig dat deze reviews echt zijn, of vervang ze door echte reviews. -->
+		<!-- TODO: bevestig dat deze reviews echt zijn, of vervang ze door echte reviews. -->
 		<section id="ervaringen" class="section">
 			<div class="container">
 				<header class="section-head reveal">
@@ -182,22 +196,34 @@
 					<h2 class="h2">Wat starters zeggen</h2>
 				</header>
 
-				<div class="reviews">
-					<figure class="review reveal">
-						<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
-						<h3>Eenvoudig</h3>
-						<blockquote><p>Nergens is het zo eenvoudig om in contact te komen met andere ondernemers. Dankjewel Jente!</p></blockquote>
-					</figure>
-					<figure class="review reveal">
-						<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
-						<h3>Verrassend snel</h3>
-						<blockquote><p>Binnen 1 week al gematcht met een ervaren ondernemer die me met veel passie verder heeft geholpen.</p></blockquote>
-					</figure>
-					<figure class="review reveal">
-						<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
-						<h3>Waardevol</h3>
-						<blockquote><p>Dit geeft ongelofelijk veel waarde voor de startende ondernemer. Het is oprecht geen geld in vergelijking met wat je ervoor terugkrijgt.</p></blockquote>
-					</figure>
+				<div class="review-rotator">
+					<div class="reviews">
+						<figure class="review reveal">
+							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
+							<h3>Eenvoudig</h3>
+							<blockquote><p>Nergens is het zo eenvoudig om in contact te komen met andere ondernemers. Dankjewel!</p></blockquote>
+							<span class="review-progress" aria-hidden="true"></span>
+						</figure>
+						<figure class="review reveal">
+							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
+							<h3>Verrassend snel</h3>
+							<blockquote><p>Binnen 1 week al gematcht met een ervaren ondernemer die me met veel passie verder heeft geholpen.</p></blockquote>
+							<span class="review-progress" aria-hidden="true"></span>
+						</figure>
+						<figure class="review reveal">
+							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
+							<h3>Waardevol</h3>
+							<blockquote><p>Dit geeft ongelofelijk veel waarde voor de startende ondernemer. Het is oprecht geen geld in vergelijking met wat je ervoor terugkrijgt.</p></blockquote>
+							<span class="review-progress" aria-hidden="true"></span>
+						</figure>
+					</div>
+					<div class="review-controls">
+						<span class="review-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+						<button class="icon-btn review-toggle" type="button" aria-label="Animatie pauzeren" data-label-pause="Animatie pauzeren" data-label-play="Animatie afspelen">
+							<svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg>
+							<svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+						</button>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -214,7 +240,7 @@
 				<div class="faq reveal">
 					<details>
 						<summary>Wat kost het?<span class="faq-icon" aria-hidden="true"></span></summary>
-						<!-- TODO Jente: vermeld hier de prijs zodra die vastligt. -->
+						<!-- TODO: vermeld hier de prijs zodra die vastligt. -->
 						<p class="answer">De prijs hangt af van wat je zoekt en bespreken we tijdens het kennismakingsgesprek. Zo weet je altijd vooraf waar je aan toe bent, en betaal je niets voordat we elkaar gesproken hebben.</p>
 					</details>
 					<details>
@@ -242,7 +268,7 @@
 			<div class="container">
 				<div class="cta reveal">
 					<h2>Klaar om de eerste stap te zetten?</h2>
-					<p>Aanmelden duurt maar een paar minuten. Jente neemt daarna persoonlijk contact met je op.</p>
+					<p>Aanmelden duurt maar een paar minuten. Daarna nemen we persoonlijk contact met je op.</p>
 					<div class="hero-actions">
 						<a class="btn btn-dark" href="aanmelden.html">Meld je aan
 							<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -271,7 +297,7 @@
 						Nudged
 					</a>
 					<p class="footer-tagline">De brug tussen ondernemers.</p>
-					<!-- TODO Jente: vul de links naar Facebook en Instagram in. -->
+					<!-- TODO: vul de links naar Facebook en Instagram in. -->
 					<div class="socials">
 						<a class="icon-btn" href="#" aria-label="Nudged op Facebook">
 							<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.25-1.5 1.5-1.5h1.6V4.3a21 21 0 0 0-2.3-.1c-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg>

@@ -93,6 +93,75 @@
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  /* ---------- Steps timeline ---------- */
+  var timeline = document.querySelector('.timeline');
+  if (timeline) {
+    var vertical = window.matchMedia('(max-width: 900px)');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Position the track between the first and last dot, and tell each step
+    // how far along the line it sits (0–1) so it lights up when the line arrives.
+    var layoutTimeline = function () {
+      var box = timeline.getBoundingClientRect();
+      var dots = timeline.querySelectorAll('.step-dot');
+      var centers = Array.prototype.map.call(dots, function (dot) {
+        var r = dot.getBoundingClientRect();
+        return vertical.matches ? r.top + r.height / 2 - box.top : r.left + r.width / 2 - box.left;
+      });
+      var start = centers[0];
+      var len = centers[centers.length - 1] - start;
+      timeline.style.setProperty('--start', start + 'px');
+      timeline.style.setProperty('--len', len + 'px');
+      dots.forEach(function (dot, i) {
+        dot.parentElement.style.setProperty('--at', len > 0 ? ((centers[i] - start) / len).toFixed(3) : '0');
+      });
+    };
+
+    layoutTimeline();
+    window.addEventListener('resize', layoutTimeline);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutTimeline);
+
+    if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+      timeline.classList.add('is-active');
+    } else {
+      // Start once the timeline reaches the upper 70% of the viewport. A margin
+      // instead of a visibility ratio, so a tall (vertical) timeline still triggers.
+      var timelineObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          timeline.classList.add('is-active');
+          timelineObserver.disconnect();
+        }
+      }, { rootMargin: '0px 0px -30% 0px' });
+      timelineObserver.observe(timeline);
+    }
+  }
+
+  /* ---------- Review spotlight rotation ---------- */
+  var rotator = document.querySelector('.review-rotator');
+  if (rotator) {
+    // The rotation itself is CSS; JS only starts it once the reviews are on screen
+    // (so the first review gets its full 10s) and wires up the pause button.
+    if ('IntersectionObserver' in window) {
+      var rotatorObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          rotator.classList.add('is-running');
+          rotatorObserver.disconnect();
+        }
+      }, { rootMargin: '0px 0px -30% 0px' });
+      rotatorObserver.observe(rotator);
+    } else {
+      rotator.classList.add('is-running');
+    }
+
+    var rotatorToggle = rotator.querySelector('.review-toggle');
+    if (rotatorToggle) {
+      rotatorToggle.addEventListener('click', function () {
+        var paused = rotator.classList.toggle('is-paused');
+        rotatorToggle.setAttribute('aria-label', paused ? rotatorToggle.dataset.labelPlay : rotatorToggle.dataset.labelPause);
+      });
+    }
+  }
+
   /* ---------- Tally sign-up form ---------- */
   var formCard = document.querySelector('[data-tally-form]');
   if (formCard) {

@@ -15,8 +15,8 @@
   --btn-bg: #121317;
   --btn-text: #ffffff;
   --btn-hover: #34363b;
-  /* Brand colour: change it here, every other green is derived from it. */
-  --primary: #186e03;
+  /* Brand colour: change it here, every other shade is derived from it. */
+  --primary: #00A1F2;
   --primary-light: color-mix(in srgb, var(--primary) 60%, #ffffff);
 
   --accent: var(--primary);
@@ -480,46 +480,117 @@ a.card:hover .card-link svg { transform: translateX(3px); }
 .note-row p { color: var(--text-muted); }
 .note-row strong { display: block; color: var(--text); font-size: 1.125rem; font-weight: 500; }
 
-/* ---------- Steps ---------- */
+/* ---------- Steps timeline ---------- */
+/* site.js measures the dots and sets --start / --len on .timeline and --at (0–1) on each step,
+   so every dot lights up exactly when the growing line reaches it. */
+.timeline {
+  --dur: 2.4s;
+  position: relative;
+}
+
+.timeline-track {
+  position: absolute;
+  z-index: 0;
+  top: 25px;
+  left: var(--start, 26px);
+  width: var(--len, 0px);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--border);
+  pointer-events: none;
+}
+.timeline-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur) linear;
+}
+.timeline-head {
+  position: absolute;
+  top: -5px;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent);
+  opacity: 0;
+  transition: transform var(--dur) linear, opacity 0.3s ease;
+}
+.timeline.is-active .timeline-fill { transform: none; }
+.timeline.is-active .timeline-head { opacity: 1; transform: translateX(var(--len, 0px)); }
+
 .steps {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
   padding: 0;
   list-style: none;
-  counter-reset: step;
 }
 .step {
+  --delay: calc(var(--at, 0) * var(--dur));
   position: relative;
   padding-top: 76px;
-  counter-increment: step;
 }
-.step::before {
-  content: counter(step);
+
+.step-dot {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
   display: grid;
   place-items: center;
   width: 52px;
   height: 52px;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--border);
   border-radius: 50%;
   background: var(--bg);
-  color: var(--text);
+  color: var(--text-muted);
   font-size: 1.125rem;
   font-weight: 500;
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+  transition-delay: var(--delay);
 }
-.step::after {
+.step-dot::after {
   content: "";
   position: absolute;
-  top: 26px;
-  left: 64px;
-  right: -12px;
-  border-top: 1.5px dashed var(--border);
+  inset: -2px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
 }
-.step:last-child::after { display: none; }
+.timeline.is-active .step-dot,
+html:not(.js) .step-dot {
+  border-color: var(--btn-primary-bg);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+.timeline.is-active .step-dot { animation: dot-pop 0.5s ease var(--delay) both; }
+.timeline.is-active .step-dot::after { animation: dot-ripple 1s ease-out var(--delay) forwards; }
+
+@keyframes dot-pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+@keyframes dot-ripple {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.9); }
+}
+
+.js .step-body {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: calc(var(--delay) + 0.1s);
+}
+.js .timeline.is-active .step-body { opacity: 1; transform: none; }
+
 .step h3 { margin-bottom: 8px; font-size: 1.25rem; font-weight: 500; }
 .step p { color: var(--text-muted); font-size: 1rem; }
 .chip {
@@ -536,14 +607,20 @@ a.card:hover .card-link svg { transform: translateX(3px); }
 @media (max-width: 900px) {
   .steps { grid-template-columns: 1fr; gap: 0; }
   .step { padding: 10px 0 36px 76px; }
-  .step::after {
-    top: 60px;
-    bottom: 4px;
-    left: 26px;
-    right: auto;
-    border-top: 0;
-    border-left: 1.5px dashed var(--border);
+  .timeline-track {
+    top: var(--start, 26px);
+    left: 25px;
+    width: 2px;
+    height: var(--len, 0px);
   }
+  .timeline-fill { transform: scaleY(0); transform-origin: center top; }
+  .timeline-head { top: -6px; left: -5px; }
+  .timeline.is-active .timeline-head { transform: translateY(var(--len, 0px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline *, .timeline *::after { transition-delay: 0s !important; animation: none !important; }
+  .timeline-head { display: none; }
 }
 
 /* ---------- Quote panel ---------- */
@@ -594,17 +671,116 @@ a.card:hover .card-link svg { transform: translateX(3px); }
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 .review {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 32px;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  background: var(--bg);
 }
-.review-mark { width: 32px; height: 24px; color: var(--accent); }
+.review-mark { width: 32px; height: 24px; color: var(--accent); transform-origin: left bottom; }
 .review h3 { font-size: 1.25rem; font-weight: 500; }
 .review p { color: var(--text-body); }
 .reviews-note { margin-top: 16px; color: var(--text-muted); font-size: 0.875rem; }
+
+/* Spotlight rotation: each review is highlighted for 10s in a 30s loop (3 reviews).
+   Adding a review? Raise --review-cycle to count × 10s and adjust the 33.33% keyframe stops. */
+.review-rotator {
+  --review-cycle: 30s;
+  --review-play: running;
+}
+/* Pause while reading a card (not while on the pause button, or "play" would appear dead). */
+.review-rotator:has(.reviews:hover),
+.review-rotator.is-paused { --review-play: paused; }
+
+.review:nth-child(2), .review-dots i:nth-child(2) { --i: 1; }
+.review:nth-child(3), .review-dots i:nth-child(3) { --i: 2; }
+
+.review-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.review-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 20px;
+}
+.review-dots { display: flex; gap: 6px; }
+.review-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border);
+}
+.review-toggle { border: 1px solid var(--border); }
+.review-toggle .icon-play { display: none; }
+.review-rotator.is-paused .review-toggle .icon-pause { display: none; }
+.review-rotator.is-paused .review-toggle .icon-play { display: block; }
+
+.review-rotator.is-running .review,
+.review-rotator.is-running .review-mark,
+.review-rotator.is-running .review-progress,
+.review-rotator.is-running .review-dots i {
+  animation-duration: var(--review-cycle);
+  animation-delay: calc(var(--i, 0) * 10s);
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  animation-play-state: var(--review-play);
+}
+.review-rotator.is-running .review { animation-name: review-spotlight; }
+.review-rotator.is-running .review-mark { animation-name: review-mark-pop; }
+.review-rotator.is-running .review-progress { animation-name: review-progress; animation-timing-function: linear; }
+.review-rotator.is-running .review-dots i { animation-name: review-dot; }
+
+/* `translate` (not `transform`) so it doesn't fight the scroll-reveal transform. */
+@keyframes review-spotlight {
+  0%, 33.34%, 100% {
+    translate: 0 0;
+    border-color: var(--border);
+    background-color: var(--bg);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  3%, 30% {
+    translate: 0 -6px;
+    border-color: var(--accent);
+    background-color: color-mix(in srgb, var(--accent) 5%, var(--bg));
+    box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+}
+@keyframes review-mark-pop {
+  0% { transform: scale(1) rotate(0deg); }
+  2% { transform: scale(1.3) rotate(-8deg); }
+  4.5%, 100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes review-progress {
+  0% { transform: scaleX(0); opacity: 1; }
+  33.33% { transform: scaleX(1); opacity: 1; }
+  33.34%, 100% { transform: scaleX(0); opacity: 0; }
+}
+@keyframes review-dot {
+  0%, 33.34%, 100% { width: 8px; background: var(--border); }
+  2%, 31% { width: 28px; background: var(--accent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-rotator.is-running .review,
+  .review-rotator.is-running .review-mark,
+  .review-rotator.is-running .review-progress,
+  .review-rotator.is-running .review-dots i { animation: none; }
+  .review-controls { display: none; }
+}
 
 /* ---------- FAQ ---------- */
 .faq-layout { display: grid; gap: 32px; }
