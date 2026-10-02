@@ -479,7 +479,19 @@ a.card:hover .card-link svg { transform: translateX(3px); }
 }
 .note-row p { color: var(--text-muted); }
 .note-row strong { display: block; color: var(--text); font-size: 1.125rem; font-weight: 500; }
-
+.note-content {
+  flex: 1;
+}
+.note-content p {
+  margin: 0;
+}
+.note-content p span {
+  display: block;
+  margin-top: 4px;
+}
+.note-row .btn {
+  flex-shrink: 0;
+}
 /* ---------- Steps timeline ---------- */
 /* site.js measures the dots and sets --start / --len on .timeline and --at (0–1) on each step,
    so every dot lights up exactly when the growing line reaches it. */
