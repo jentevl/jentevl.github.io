@@ -680,6 +680,7 @@ html:not(.js) .step-dot {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--bg);
+  flex: 0 0 calc((100% - 32px) / 3);
 }
 .review-mark { width: 32px; height: 24px; color: var(--accent); transform-origin: left bottom; }
 .review h3 { font-size: 1.25rem; font-weight: 500; }
