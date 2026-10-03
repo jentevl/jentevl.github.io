@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Aanmelden — Nudge</title>
+	<meta name="description" content="Meld je aan bij Nudge. Vertel wie je bent en wat je zoekt, en we nemen persoonlijk contact met je op." />
+	<meta property="og:title" content="Aanmelden — Nudge" />
+	<meta property="og:description" content="Op zoek naar een partner, mentor of investeerder? Nudge brengt je in contact." />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="nl_BE" />
+	<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+	<meta name="theme-color" content="#121317" media="(prefers-color-scheme: dark)" />
+	<link rel="alternate" hreflang="nl" href="aanmelden.html" />
+	<link rel="alternate" hreflang="en" href="en/signup.html" />
+	<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+	<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('nudge-theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})();</script>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" />
+	<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+	<a class="skip-link" href="#main">Naar de inhoud</a>
+
+	<header class="site-header">
+		<div class="container header-inner">
+			<a class="brand" href="index.html" aria-label="Nudge, naar de startpagina">
+				<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="f-accent" cx="12" cy="19" r="8.5"/><circle class="f-accent" cx="24" cy="10" r="5"/><circle class="f-accent" cx="25.5" cy="24.5" r="2.5"/></svg>
+				Nudge
+			</a>
+			<nav id="site-nav" class="site-nav" aria-label="Hoofdmenu">
+				<ul>
+					<li><a href="index.html#voor-wie">Voor wie</a></li>
+					<li><a href="index.html#hoe-het-werkt">Hoe het werkt</a></li>
+					<li><a href="index.html#ervaringen">Ervaringen</a></li>
+					<li><a href="index.html#faq">FAQ</a></li>
+					<li class="nav-cta-mobile"><a class="btn btn-primary" href="aanmelden.html">Meld je aan</a></li>
+				</ul>
+			</nav>
+			<div class="header-actions">
+				<a class="lang-switch" href="en/signup.html" hreflang="en" lang="en" aria-label="English">EN</a>
+				<button class="icon-btn theme-toggle" type="button" data-theme-toggle data-label-dark="Donkere modus inschakelen" data-label-light="Lichte modus inschakelen" aria-label="Donkere modus inschakelen">
+					<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+					<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+				</button>
+				<button class="icon-btn menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu openen" data-label-open="Menu openen" data-label-close="Menu sluiten">
+					<svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+					<svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+				</button>
+				<a class="btn btn-dark btn-sm header-cta" href="aanmelden.html" aria-current="page">Meld je aan</a>
+			</div>
+		</div>
+	</header>
+
+	<main id="main">
+		<div class="container signup">
+			<div class="signup-intro">
+				<p class="eyebrow">Aanmelden</p>
+				<h1>Vertel ons waar je mee zit.</h1>
+				<p class="lead">Vul het korte formulier in en vertel ons waar je aan werkt, waar je tegenaan loopt en waar je hulp bij zoekt. Wij doen de rest.</p>
+				<ol class="mini-steps">
+					<li>Vertel ons waar je mee zit</li>
+					<li>We zoeken een passende match</li>
+					<li>We leren je vraag beter kennen</li>
+					<li>Ga in gesprek</li>
+				</ol>
+			</div>
+
+			<!--
+				TODO: maak het formulier aan op tally.so en zet de formulier-ID in data-tally-form
+				(bv. data-tally-form="w7Xy9Z"). Voeg in Tally de verborgen velden "type" en "lang" toe:
+				die worden automatisch ingevuld (type = partner, mentor, investor of experienced).
+			-->
+			<div class="form-card" data-tally-form="" data-title="Aanmeldformulier Nudge">
+				<div class="form-fallback" hidden>
+					<strong>Het aanmeldformulier komt eraan.</strong>
+					<p>Nog even geduld, binnenkort kan je je hier aanmelden.</p>
+				</div>
+				<noscript>
+					<div class="form-fallback">
+						<strong>Schakel JavaScript in</strong>
+						<p>Het aanmeldformulier heeft JavaScript nodig om te laden.</p>
+					</div>
+				</noscript>
+			</div>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<div class="footer-grid">
+				<div>
+					<a class="brand" href="index.html">
+						<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="f-accent" cx="12" cy="19" r="8.5"/><circle class="f-accent" cx="24" cy="10" r="5"/><circle class="f-accent" cx="25.5" cy="24.5" r="2.5"/></svg>
+						Nudge
+					</a>
+					<p class="footer-tagline">De juiste persoon voor jouw volgende stap.</p>
+					<!-- TODO: vul de links naar Facebook en Instagram in. -->
+					<div class="socials">
+  						<a class="icon-btn" href="https://www.linkedin.com/in/jente-van-langenaeken-a2a3b02a8/" target="_blank" rel="noopener" aria-label="Nudge op LinkedIn">
+    					<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5H3V21h3.5V8.5ZM4.75 3A2.1 2.1 0 1 0 4.75 7.2 2.1 2.1 0 0 0 4.75 3ZM21 13.8c0-3.8-2-5.6-4.7-5.6-2.2 0-3.2 1.2-3.8 2v-1.7H9V21h3.5v-6.2c0-1.6.3-3.2 2.3-3.2 2 0 2 1.9 2 3.3V21H21v-7.2Z"/></svg>
+  						</a>
+						<a class="icon-btn" href="https://wa.me/32495477107" target="_blank" rel="noopener" aria-label="Contact via WhatsApp">
+					    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.7.7-.8.9-.2.2-.3.2-.5.1-1.3-.6-2.2-1.1-3.1-2.5-.2-.3.2-.3.5-1.1.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.6-.9-.4-.2-.4-.3-.6-.3h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 5 4.3 2.9 1.1 2.9.7 3.4.7.5-.1 1.3-.5 1.5-1 .2-.5.2-1 .2-1.1-.1-.1-.3-.2-.5-.3Z"/>
+						</svg>
+  						</a>
+					</div>
+				</div>
+				<div class="footer-col">
+					<h2>Nudge</h2>
+					<ul>
+						<li><a href="index.html#voor-wie">Voor wie</a></li>
+						<li><a href="index.html#hoe-het-werkt">Hoe het werkt</a></li>
+						<li><a href="index.html#faq">Veelgestelde vragen</a></li>
+						<li><a href="aanmelden.html">Aanmelden</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h2>Taal</h2>
+					<ul>
+						<li><a href="aanmelden.html" aria-current="page">Nederlands</a></li>
+						<li><a href="en/signup.html" hreflang="en" lang="en">English</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>&copy; 2026 Nudge</p>
+				<p>Powered by Everloop</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
+</html>
