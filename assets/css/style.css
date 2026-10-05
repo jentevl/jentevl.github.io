@@ -479,7 +479,19 @@ a.card:hover .card-link svg { transform: translateX(3px); }
 }
 .note-row p { color: var(--text-muted); }
 .note-row strong { display: block; color: var(--text); font-size: 1.125rem; font-weight: 500; }
-
+.note-content {
+  flex: 1;
+}
+.note-content p {
+  margin: 0;
+}
+.note-content p span {
+  display: block;
+  margin-top: 4px;
+}
+.note-row .btn {
+  flex-shrink: 0;
+}
 /* ---------- Steps timeline ---------- */
 /* site.js measures the dots and sets --start / --len on .timeline and --at (0–1) on each step,
    so every dot lights up exactly when the growing line reaches it. */
@@ -666,9 +678,9 @@ html:not(.js) .step-dot {
 
 /* ---------- Reviews ---------- */
 .reviews {
-  display: grid;
+  display: flex;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  overflow: hidden;
 }
 .review {
   position: relative;
@@ -680,6 +692,7 @@ html:not(.js) .step-dot {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--bg);
+  flex: 0 0 calc((100% - 32px) / 3);
 }
 .review-mark { width: 32px; height: 24px; color: var(--accent); transform-origin: left bottom; }
 .review h3 { font-size: 1.25rem; font-weight: 500; }
