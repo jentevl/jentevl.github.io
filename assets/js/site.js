@@ -1,4 +1,4 @@
-/* Nudged — site behaviour: theme toggle, mobile menu, header state, reveal, Tally embed */
+/* Nudged — site behaviour: theme toggle, mobile menu, header state, reveal, Airtable embed */
 (function () {
   'use strict';
 
@@ -162,37 +162,41 @@
     }
   }
 
-  /* ---------- Tally sign-up form ---------- */
-  var formCard = document.querySelector('[data-tally-form]');
+  /* ---------- Airtable sign-up form ---------- */
+  var formCard = document.querySelector('[data-airtable-form]');
   if (formCard) {
-    var formId = (formCard.dataset.tallyForm || '').trim();
+    // Accepts a shared form ID ("shrXXXX", "appXXXX/shrXXXX") or its full URL.
+    var formId = (formCard.dataset.airtableForm || '').trim()
+      .replace(/^https?:\/\/airtable\.com\//, '')
+      .replace(/^embed\//, '')
+      .replace(/[?#].*$/, '');
     var fallback = formCard.querySelector('.form-fallback');
 
     if (!formId) {
       if (fallback) fallback.hidden = false;
     } else {
-      var params = new URLSearchParams({
-        alignLeft: '1',
-        hideTitle: '1',
-        transparentBackground: '1',
-        dynamicHeight: '1',
-        lang: root.lang || 'nl'
-      });
-      // Tally's embed script forwards this page's query string (e.g. ?type=mentor)
-      // to the form, which fills its hidden "type" field.
+      // Prefill and hide the form's "type" (from ?type=mentor etc.) and "lang" fields.
+      var params = new URLSearchParams();
+      var type = new URLSearchParams(window.location.search).get('type');
+      if (type) {
+        params.set('prefill_type', type);
+        params.set('hide_type', 'true');
+      }
+      params.set('prefill_lang', root.lang || 'nl');
+      params.set('hide_lang', 'true');
+
       var iframe = document.createElement('iframe');
-      var src = 'https://tally.so/embed/' + encodeURIComponent(formId) + '?' + params.toString();
-      iframe.setAttribute('data-tally-src', src);
-      iframe.setAttribute('title', formCard.dataset.title || 'Tally form');
+      iframe.className = 'airtable-embed airtable-dynamic-height';
+      iframe.src = 'https://airtable.com/embed/' + formId.split('/').map(encodeURIComponent).join('/') + '?' + params.toString();
+      iframe.setAttribute('title', formCard.dataset.title || 'Airtable form');
       iframe.setAttribute('loading', 'lazy');
-      iframe.setAttribute('height', '500');
+      iframe.setAttribute('height', '1100');
       formCard.appendChild(iframe);
 
+      // Airtable's embed snippet resizes .airtable-dynamic-height iframes to fit the form.
       var script = document.createElement('script');
-      script.src = 'https://tally.so/widgets/embed.js';
+      script.src = 'https://static.airtable.com/js/embed/embed_snippet_v1.js';
       script.async = true;
-      script.onload = function () { if (window.Tally) window.Tally.loadEmbeds(); };
-      script.onerror = function () { iframe.src = src; };
       document.body.appendChild(script);
     }
   }
