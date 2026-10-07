@@ -995,6 +995,12 @@ html:not(.js) .step-dot {
   font-size: clamp(1.5rem, 3vw, 2rem);
   letter-spacing: -0.02em;
 }
+.legal h3 {
+  margin-top: clamp(24px, 4vw, 32px);
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
 .legal p + p,
 .legal p + ul,
 .legal p + ol,
