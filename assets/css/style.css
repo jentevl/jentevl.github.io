@@ -298,7 +298,7 @@ img, svg { display: block; max-width: 100%; }
   .site-nav {
     display: none;
     position: absolute;
-    top: var(--header-h);
+    top: 100%;
     left: 0;
     right: 0;
     margin: 0;
@@ -312,6 +312,73 @@ img, svg { display: block; max-width: 100%; }
   .site-nav .nav-cta-mobile { display: block; margin-top: 12px; }
   .site-nav .nav-cta-mobile .btn { display: flex; width: 100%; padding: 12px 24px; color: var(--btn-primary-text); }
   .site-nav .nav-cta-mobile .btn:hover { background: var(--btn-primary-hover); }
+}
+
+/* ---------- Test phase notice ---------- */
+/* Subpages: dark bar at the top of the sticky header. Homepage: .test-card below the hero. */
+.test-bar {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--quote-bg);
+  border-bottom: 1px solid var(--quote-border);
+}
+.test-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(30% 260% at 6% 50%, color-mix(in srgb, var(--primary-light) 22%, transparent), transparent 70%),
+    radial-gradient(30% 260% at 94% 50%, color-mix(in srgb, var(--primary-light) 30%, transparent), transparent 70%);
+}
+.test-bar p {
+  padding-block: 10px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  text-align: center;
+}
+.test-bar strong { color: #ffffff; font-weight: 500; }
+.test-bar .beta-dot { display: inline-block; margin-right: 12px; vertical-align: 0.05em; }
+.test-bar .beta-dot,
+.test-bar .beta-dot::after { background: var(--primary-light); }
+
+.beta-dot {
+  position: relative;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.beta-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--accent);
+  animation: beta-pulse 2.4s ease-out infinite;
+}
+@keyframes beta-pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  70%, 100% { opacity: 0; transform: scale(2.6); }
+}
+
+.test-section { padding-top: 0; }
+.test-card {
+  display: grid;
+  gap: 32px;
+  align-items: end;
+  padding: clamp(32px, 6vw, 80px) clamp(24px, 6vw, 80px);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--accent) 7%, var(--bg));
+}
+.test-card-text { display: grid; gap: 16px; }
+.test-card .btn { justify-self: start; }
+@media (min-width: 900px) {
+  .test-card { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }
 }
 
 /* ---------- Hero ---------- */
@@ -908,6 +975,8 @@ html:not(.js) .step-dot {
   font-size: 0.875rem;
 }
 .footer-bottom ul { display: flex; gap: 24px; padding: 0; list-style: none; }
+.footer-legal { margin-left: 16px; color: inherit; font-size: 0.8125rem; text-decoration: none; }
+.footer-legal:hover { text-decoration: underline; }
 
 /* ---------- Sign-up page ---------- */
 .signup {
@@ -1023,5 +1092,6 @@ html:not(.js) .step-dot {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .float { animation: none; }
+  .beta-dot::after { animation: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
