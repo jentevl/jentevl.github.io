@@ -4,31 +4,52 @@
 :root {
   --font: "Google Sans Flex", "Google Sans", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  --bg: #ffffff;
-  --bg-elev: rgba(255, 255, 255, 0.86);
-  --card: #f1f4f9;
-  --card-hover: #e8edf5;
-  --text: #121317;
-  --text-body: #3c4043;
-  --text-muted: #5f6368;
-  --border: #dfe1e5;
-  --btn-bg: #121317;
-  --btn-text: #ffffff;
-  --btn-hover: #34363b;
-  /* Brand colour: change it here, every other shade is derived from it. */
-  --primary: #00A1F2;
-  --primary-light: color-mix(in srgb, var(--primary) 60%, #ffffff);
+  /* Brand palette: change a brand colour here, every token below uses these. */
+  --neon: #33FF66;
+  --dark-green: #0D2F2B;
+  --light-gray: #EFEFEF;
+  --black: #131313;
+  --white: #FFFFFF;
 
-  --accent: var(--primary);
-  --btn-primary-bg: var(--primary);
-  --btn-primary-hover: color-mix(in srgb, var(--primary) 85%, #000000);
-  --btn-primary-text: #ffffff;
-  --link: var(--primary);
-  --doodle: #80868b;
-  --quote-bg: #121317;
+  /* Derived tints (greys with a hint of the dark green), all checked for WCAG AA. */
+  --gray-text: #4A5654;        /* muted text on white / light grey */
+  --gray-text-dark: #A9B5B2;   /* muted text on black / dark green */
+  --gray-border: #D8DCDB;
+  --gray-border-dark: #2C4A45;
+  --gray-doodle: #8A9A96;
+  --gray-doodle-dark: #6F827E;
+
+  /* Dark surfaces (footer, quote panel, test bar): same in light and dark mode. */
+  --surface-dark: var(--dark-green);
+  --surface-dark-hover: color-mix(in srgb, var(--dark-green) 92%, var(--white));
+  --on-dark: var(--white);
+  --on-dark-muted: #C9D3D1;
+  --on-dark-border: #34504D;
+
+  --bg: var(--white);
+  --bg-elev: rgba(255, 255, 255, 0.86);
+  --card: var(--light-gray);
+  --card-hover: color-mix(in srgb, var(--light-gray) 92%, var(--dark-green));
+  --text: var(--dark-green);   /* headings and UI text */
+  --text-body: var(--black);
+  --text-muted: var(--gray-text);
+  --border: var(--gray-border);
+  --btn-bg: var(--dark-green);
+  --btn-text: var(--white);
+  --btn-hover: color-mix(in srgb, var(--dark-green) 85%, var(--white));
+
+  /* Neon is for fills only in light mode; --accent-ink is the readable accent for text, markers and focus. */
+  --accent: var(--neon);
+  --accent-ink: var(--dark-green);
+  --btn-primary-bg: var(--neon);
+  --btn-primary-hover: color-mix(in srgb, var(--neon) 85%, var(--dark-green));
+  --btn-primary-text: var(--dark-green);
+  --link: var(--accent-ink);
+  --doodle: var(--gray-doodle);
+  --quote-bg: var(--surface-dark);
   --quote-border: transparent;
-  --form-surface: #ffffff;
-  --focus: var(--primary);
+  --form-surface: var(--white);
+  --focus: var(--accent-ink);
   --moon-display: block;
   --sun-display: none;
 
@@ -43,26 +64,22 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121317;
-    --bg-elev: rgba(18, 19, 23, 0.84);
-    --card: #1e1f24;
-    --card-hover: #26282e;
-    --text: #eceef1;
-    --text-body: #c4c7cc;
-    --text-muted: #9aa0a6;
-    --border: #30323a;
-    --btn-bg: #eceef1;
-    --btn-text: #121317;
-    --btn-hover: #ffffff;
-    --accent: var(--primary-light);
-    --btn-primary-bg: var(--primary-light);
-    --btn-primary-hover: color-mix(in srgb, var(--primary) 45%, #ffffff);
-    --btn-primary-text: #121317;
-    --link: var(--primary-light);
-    --doodle: #80868b;
-    --quote-bg: #1b1c21;
-    --quote-border: #30323a;
-    --focus: var(--primary-light);
+    --bg: var(--black);
+    --bg-elev: rgba(19, 19, 19, 0.84);
+    --card: var(--dark-green);
+    --card-hover: color-mix(in srgb, var(--dark-green) 92%, var(--white));
+    --text: var(--white);
+    --text-body: var(--light-gray);
+    --text-muted: var(--gray-text-dark);
+    --border: var(--gray-border-dark);
+    --btn-bg: var(--light-gray);
+    --btn-text: var(--black);
+    --btn-hover: var(--white);
+    --accent-ink: var(--neon);
+    --link: var(--accent-ink);
+    --doodle: var(--gray-doodle-dark);
+    --quote-border: var(--gray-border-dark);
+    --focus: var(--accent-ink);
     --moon-display: none;
     --sun-display: block;
     color-scheme: dark;
@@ -70,26 +87,22 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #121317;
-  --bg-elev: rgba(18, 19, 23, 0.84);
-  --card: #1e1f24;
-  --card-hover: #26282e;
-  --text: #eceef1;
-  --text-body: #c4c7cc;
-  --text-muted: #9aa0a6;
-  --border: #30323a;
-  --btn-bg: #eceef1;
-  --btn-text: #121317;
-  --btn-hover: #ffffff;
-  --accent: var(--primary-light);
-  --btn-primary-bg: var(--primary-light);
-  --btn-primary-hover: color-mix(in srgb, var(--primary) 45%, #ffffff);
-  --btn-primary-text: #121317;
-  --link: var(--primary-light);
-  --doodle: #80868b;
-  --quote-bg: #1b1c21;
-  --quote-border: #30323a;
-  --focus: var(--primary-light);
+  --bg: var(--black);
+  --bg-elev: rgba(19, 19, 19, 0.84);
+  --card: var(--dark-green);
+  --card-hover: color-mix(in srgb, var(--dark-green) 92%, var(--white));
+  --text: var(--white);
+  --text-body: var(--light-gray);
+  --text-muted: var(--gray-text-dark);
+  --border: var(--gray-border-dark);
+  --btn-bg: var(--light-gray);
+  --btn-text: var(--black);
+  --btn-hover: var(--white);
+  --accent-ink: var(--neon);
+  --link: var(--accent-ink);
+  --doodle: var(--gray-doodle-dark);
+  --quote-border: var(--gray-border-dark);
+  --focus: var(--accent-ink);
   --moon-display: none;
   --sun-display: block;
   color-scheme: dark;
@@ -329,20 +342,18 @@ img, svg { display: block; max-width: 100%; }
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(30% 260% at 6% 50%, color-mix(in srgb, var(--primary-light) 22%, transparent), transparent 70%),
-    radial-gradient(30% 260% at 94% 50%, color-mix(in srgb, var(--primary-light) 30%, transparent), transparent 70%);
+    radial-gradient(30% 260% at 6% 50%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
+    radial-gradient(30% 260% at 94% 50%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
 }
 .test-bar p {
   padding-block: 10px;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--on-dark-muted);
   font-size: 0.9375rem;
   line-height: 1.45;
   text-align: center;
 }
-.test-bar strong { color: #ffffff; font-weight: 500; }
+.test-bar strong { color: var(--on-dark); font-weight: 500; }
 .test-bar .beta-dot { display: inline-block; margin-right: 12px; vertical-align: 0.05em; }
-.test-bar .beta-dot,
-.test-bar .beta-dot::after { background: var(--primary-light); }
 
 .beta-dot {
   position: relative;
@@ -711,7 +722,7 @@ html:not(.js) .step-dot {
   border: 1px solid var(--quote-border);
   border-radius: var(--radius-lg);
   background: var(--quote-bg);
-  color: #ffffff;
+  color: var(--on-dark);
 }
 .quote-panel::before {
   content: "";
@@ -719,13 +730,13 @@ html:not(.js) .step-dot {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(38% 60% at 88% 12%, color-mix(in srgb, var(--primary-light) 38%, transparent), transparent 70%),
-    radial-gradient(30% 50% at 6% 96%, color-mix(in srgb, var(--primary-light) 20%, transparent), transparent 70%),
-    radial-gradient(28% 45% at 62% 115%, color-mix(in srgb, var(--primary-light) 26%, transparent), transparent 70%);
+    radial-gradient(38% 60% at 88% 12%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%),
+    radial-gradient(30% 50% at 6% 96%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+    radial-gradient(28% 45% at 62% 115%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 70%);
 }
 .quote-panel p {
   max-width: 24ch;
-  color: #ffffff;
+  color: var(--on-dark);
   font-size: clamp(1.625rem, 3.8vw, 3rem);
   font-weight: 420;
   line-height: 1.16;
@@ -736,12 +747,12 @@ html:not(.js) .step-dot {
   align-items: center;
   gap: 12px;
   margin-top: 32px;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--on-dark-muted);
   font-size: 1rem;
 }
 .quote-panel cite { font-style: normal; }
 .quote-dots { display: flex; gap: 6px; }
-.quote-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--primary-light); }
+.quote-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 
 /* ---------- Reviews ---------- */
 .reviews {
@@ -938,9 +949,19 @@ html:not(.js) .step-dot {
 @media (max-width: 800px) { .cta-art { display: none; } }
 
 /* ---------- Footer ---------- */
+/* Dark green surface in both modes: the footer re-points the tokens its children use. */
 .site-footer {
+  --text: var(--on-dark);
+  --text-muted: var(--on-dark-muted);
+  --border: var(--on-dark-border);
+  --card: var(--surface-dark-hover);
+  --accent: var(--neon);
+  --link: var(--neon);
+  --focus: var(--neon);
   padding-block: 48px 32px;
   border-top: 1px solid var(--border);
+  background: var(--surface-dark);
+  color: var(--on-dark-muted);
 }
 .footer-grid {
   display: grid;
@@ -1032,12 +1053,12 @@ html:not(.js) .step-dot {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--form-surface);
-  color: #3c4043;
+  color: var(--black);
 }
 .form-card iframe { display: block; width: 100%; min-height: 400px; border: 0; }
 .form-fallback { display: grid; gap: 12px; align-content: center; min-height: 340px; text-align: center; }
 .form-fallback[hidden] { display: none; }
-.form-fallback strong { color: #121317; font-size: 1.25rem; font-weight: 500; }
+.form-fallback strong { color: var(--dark-green); font-size: 1.25rem; font-weight: 500; }
 
 /* ---------- Legal page (privacy) ---------- */
 .legal {
@@ -1077,7 +1098,7 @@ html:not(.js) .step-dot {
 .legal ol + p { margin-top: 14px; }
 .legal ul,
 .legal ol { display: grid; gap: 10px; padding-left: 1.4em; }
-.legal li::marker { color: var(--accent); }
+.legal li::marker { color: var(--accent-ink); }
 .legal strong { color: var(--text); font-weight: 500; }
 
 /* ---------- Reveal ---------- */
