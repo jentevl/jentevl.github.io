@@ -26,12 +26,21 @@
   --on-dark-muted: #C9D3D1;
   --on-dark-border: #34504D;
 
-  --bg: var(--white);
-  --bg-elev: rgba(255, 255, 255, 0.86);
-  --card: var(--light-gray);
-  --card-hover: color-mix(in srgb, var(--light-gray) 92%, var(--dark-green));
+  --bg: var(--light-gray);
+  --bg-elev: rgba(239, 239, 239, 0.86);
+  --card: var(--white);
+  --card-hover: color-mix(in srgb, var(--white) 94%, var(--dark-green));
+  --surface: var(--white);     /* bordered blocks (reviews, note row): white cards in light mode, page colour in dark */
+  --btn-outline-hover: color-mix(in srgb, var(--white) 94%, var(--dark-green));
   --text: var(--dark-green);   /* headings and UI text */
-  --text-body: var(--black);
+  --text-body: var(--dark-green);
+
+  /* Test phase block: dark green with a neon button in light mode, neon-tinted in dark mode. */
+  --test-card-bg: var(--surface-dark);
+  --test-card-border: transparent;
+  --test-card-text: var(--on-dark);
+  --test-card-muted: var(--on-dark-muted);
+  --test-card-focus: var(--neon);
   --text-muted: var(--gray-text);
   --border: var(--gray-border);
   --btn-bg: var(--dark-green);
@@ -68,6 +77,13 @@
     --bg-elev: rgba(19, 19, 19, 0.84);
     --card: var(--dark-green);
     --card-hover: color-mix(in srgb, var(--dark-green) 92%, var(--white));
+    --surface: var(--black);
+    --btn-outline-hover: var(--dark-green);
+    --test-card-bg: color-mix(in srgb, var(--neon) 7%, var(--black));
+    --test-card-border: color-mix(in srgb, var(--neon) 30%, var(--gray-border-dark));
+    --test-card-text: var(--white);
+    --test-card-muted: var(--gray-text-dark);
+    --test-card-focus: var(--neon);
     --text: var(--white);
     --text-body: var(--light-gray);
     --text-muted: var(--gray-text-dark);
@@ -91,6 +107,13 @@
   --bg-elev: rgba(19, 19, 19, 0.84);
   --card: var(--dark-green);
   --card-hover: color-mix(in srgb, var(--dark-green) 92%, var(--white));
+  --surface: var(--black);
+  --btn-outline-hover: var(--dark-green);
+  --test-card-bg: color-mix(in srgb, var(--neon) 7%, var(--black));
+  --test-card-border: color-mix(in srgb, var(--neon) 30%, var(--gray-border-dark));
+  --test-card-text: var(--white);
+  --test-card-muted: var(--gray-text-dark);
+  --test-card-focus: var(--neon);
   --text: var(--white);
   --text-body: var(--light-gray);
   --text-muted: var(--gray-text-dark);
@@ -204,7 +227,7 @@ img, svg { display: block; max-width: 100%; }
 .btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
 .btn-primary:hover { background: var(--btn-primary-hover); }
 .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
-.btn-outline:hover { background: var(--card); }
+.btn-outline:hover { background: var(--btn-outline-hover); }
 .btn .arrow { width: 18px; height: 18px; transition: transform 0.15s ease; }
 .btn:hover .arrow { transform: translateX(3px); }
 
@@ -383,9 +406,12 @@ img, svg { display: block; max-width: 100%; }
   gap: 32px;
   align-items: end;
   padding: clamp(32px, 6vw, 80px) clamp(24px, 6vw, 80px);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  --text: var(--test-card-text);
+  --text-muted: var(--test-card-muted);
+  --focus: var(--test-card-focus);
+  border: 1px solid var(--test-card-border);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--accent) 7%, var(--bg));
+  background: var(--test-card-bg);
 }
 .test-card-text { display: grid; gap: 16px; }
 .test-card .btn { justify-self: start; }
@@ -555,6 +581,7 @@ a.card:hover .card-link svg { transform: translateX(3px); }
   padding: 24px 32px;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  background: var(--surface);
 }
 .note-row p { color: var(--text-muted); }
 .note-row strong { display: block; color: var(--text); font-size: 1.125rem; font-weight: 700; }
@@ -770,7 +797,7 @@ html:not(.js) .step-dot {
   padding: 32px;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: var(--bg);
+  background: var(--surface);
   flex: 0 0 calc((100% - 32px) / 3);
 }
 .review-mark { width: 32px; height: 24px; color: var(--accent); transform-origin: left bottom; }
@@ -841,13 +868,13 @@ html:not(.js) .step-dot {
   0%, 33.34%, 100% {
     translate: 0 0;
     border-color: var(--border);
-    background-color: var(--bg);
+    background-color: var(--surface);
     box-shadow: 0 0 0 0 transparent;
   }
   3%, 30% {
     translate: 0 -6px;
     border-color: var(--accent);
-    background-color: color-mix(in srgb, var(--accent) 5%, var(--bg));
+    background-color: color-mix(in srgb, var(--accent) 5%, var(--surface));
     box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--accent) 55%, transparent);
   }
 }
