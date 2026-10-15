@@ -1,9 +1,9 @@
-/* Nudged — site behaviour: theme toggle, mobile menu, header state, reveal, Airtable embed */
+/* Nudge — site behaviour: theme toggle, mobile menu, header state, reveal, Airtable embed */
 (function () {
   'use strict';
 
   var root = document.documentElement;
-  var THEME_KEY = 'nudged-theme';
+  var THEME_KEY = 'nudge-theme';
   var THEME_COLORS = { light: '#EFEFEF', dark: '#131313' };
 
   /* ---------- Theme ---------- */
