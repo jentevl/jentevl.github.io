@@ -1,4 +1,4 @@
-/* Nudged — site styles */
+/* Nudge — site styles */
 
 /* ---------- Tokens ---------- */
 :root {
@@ -273,14 +273,11 @@ img, svg { display: block; max-width: 100%; }
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   color: var(--text);
-  font-size: 1.3125rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
   text-decoration: none;
 }
-.brand-mark { width: 28px; height: 28px; }
+/* Icon + wordmark from the brand guide, tinted with the current text colour. */
+.brand-logo { width: 116px; height: auto; }
 
 .site-nav { margin-inline: auto; }
 .site-nav ul {
@@ -999,6 +996,7 @@ html:not(.js) .step-dot {
 @media (min-width: 700px) {
   .footer-grid { grid-template-columns: 1.6fr 1fr 1fr; }
 }
+.site-footer .brand { color: var(--neon); }
 .footer-tagline { margin-top: 12px; color: var(--text-muted); }
 .footer-col h2 {
   margin-bottom: 12px;
