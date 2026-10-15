@@ -4,7 +4,7 @@
 
   var root = document.documentElement;
   var THEME_KEY = 'nudged-theme';
-  var THEME_COLORS = { light: '#ffffff', dark: '#121317' };
+  var THEME_COLORS = { light: '#EFEFEF', dark: '#131313' };
 
   /* ---------- Theme ---------- */
   var systemDark = window.matchMedia('(prefers-color-scheme: dark)');

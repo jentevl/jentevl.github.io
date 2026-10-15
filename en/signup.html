@@ -9,21 +9,26 @@
 	<meta property="og:description" content="Looking for a partner, mentor or investor? Nudged makes the introduction." />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="en_GB" />
-	<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-	<meta name="theme-color" content="#121317" media="(prefers-color-scheme: dark)" />
+	<meta name="theme-color" content="#EFEFEF" media="(prefers-color-scheme: light)" />
+	<meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)" />
 	<link rel="alternate" hreflang="nl" href="../aanmelden.html" />
 	<link rel="alternate" hreflang="en" href="signup.html" />
 	<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 	<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('nudged-theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})();</script>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" />
 	<link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body>
 	<a class="skip-link" href="#main">Skip to content</a>
 
 	<header class="site-header">
+		<div class="test-bar">
+			<div class="container">
+				<p><span class="beta-dot" aria-hidden="true"></span><strong>Nudged is in a test phase.</strong> We are testing the concept with a limited group and are looking for participants to share feedback.</p>
+			</div>
+		</div>
 		<div class="container header-inner">
 			<a class="brand" href="index.html" aria-label="Nudged, home">
 				<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="f-accent" cx="12" cy="19" r="8.5"/><circle class="f-accent" cx="24" cy="10" r="5"/><circle class="f-accent" cx="25.5" cy="24.5" r="2.5"/></svg>
@@ -35,7 +40,7 @@
 					<li><a href="index.html#how-it-works">How it works</a></li>
 					<li><a href="index.html#reviews">Reviews</a></li>
 					<li><a href="index.html#faq">FAQ</a></li>
-					<li class="nav-cta-mobile"><a class="btn btn-primary" href="signup.html">Sign up</a></li>
+					<li class="nav-cta-mobile"><a class="btn btn-primary" href="signup.html">I’d like more info about the test phase</a></li>
 				</ul>
 			</nav>
 			<div class="header-actions">
@@ -48,7 +53,7 @@
 					<svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
 					<svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
 				</button>
-				<a class="btn btn-dark btn-sm header-cta" href="signup.html" aria-current="page">Sign up</a>
+				<a class="btn btn-dark btn-sm header-cta" href="signup.html" aria-current="page">I’d like more info about the test phase</a>
 			</div>
 		</div>
 	</header>
@@ -67,24 +72,14 @@
 				</ol>
 			</div>
 
-			<!--
-				TODO: create the English form in Airtable (Form view > Share) and put its shared
-				form link or ID in data-airtable-form
-				(e.g. data-airtable-form="appXXXXXXXXXXXXXX/shrXXXXXXXXXXXXXX"). Add the fields
-				"type" and "lang" to the form: they are prefilled and hidden automatically
-				(type = partner, mentor, investor or experienced).
-			-->
-			<div class="form-card" data-airtable-form="" data-title="Nudged sign-up form">
-				<div class="form-fallback" hidden>
-					<strong>The sign-up form is on its way.</strong>
-					<p>Hang tight, you’ll be able to sign up here soon.</p>
+			<!-- TODO: replace [LINK INTERESSEFORMULIER] with the link to the interest form. -->
+			<div class="cta">
+				<p>Nudged is in a test phase. Want to know more? Leave your details and I’ll contact you personally.</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="[LINK INTERESSEFORMULIER]" target="_blank" rel="noopener">I’d like more info about the test phase
+						<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+					</a>
 				</div>
-				<noscript>
-					<div class="form-fallback">
-						<strong>Please enable JavaScript</strong>
-						<p>The sign-up form needs JavaScript to load.</p>
-					</div>
-				</noscript>
 			</div>
 		</div>
 	</main>
@@ -126,7 +121,7 @@
 				</div>
 			</div>
 			<div class="footer-bottom">
-				<p>&copy; 2026 Nudged</p>
+				<p>&copy; 2026 Nudged <a class="footer-legal" href="../privacy.html" hreflang="nl" lang="nl">Privacyverklaring</a></p>
 				<p>Powered by Everloop</p>
 			</div>
 		</div>

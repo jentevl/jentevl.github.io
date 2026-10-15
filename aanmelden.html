@@ -9,21 +9,26 @@
 	<meta property="og:description" content="Op zoek naar een partner, mentor of investeerder? Nudge brengt je in contact." />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="nl_BE" />
-	<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-	<meta name="theme-color" content="#121317" media="(prefers-color-scheme: dark)" />
+	<meta name="theme-color" content="#EFEFEF" media="(prefers-color-scheme: light)" />
+	<meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)" />
 	<link rel="alternate" hreflang="nl" href="aanmelden.html" />
 	<link rel="alternate" hreflang="en" href="en/signup.html" />
 	<link rel="icon" href="favicon.svg" type="image/svg+xml" />
 	<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('nudge-theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})();</script>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" />
 	<link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 	<a class="skip-link" href="#main">Naar de inhoud</a>
 
 	<header class="site-header">
+		<div class="test-bar">
+			<div class="container">
+				<p><span class="beta-dot" aria-hidden="true"></span><strong>Nudge is in testfase.</strong> We testen het concept met een beperkte groep. We zoeken deelnemers om feedback te verzamelen.</p>
+			</div>
+		</div>
 		<div class="container header-inner">
 			<a class="brand" href="index.html" aria-label="Nudge, naar de startpagina">
 				<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="f-accent" cx="12" cy="19" r="8.5"/><circle class="f-accent" cx="24" cy="10" r="5"/><circle class="f-accent" cx="25.5" cy="24.5" r="2.5"/></svg>
@@ -35,7 +40,7 @@
 					<li><a href="index.html#hoe-het-werkt">Hoe het werkt</a></li>
 					<li><a href="index.html#ervaringen">Ervaringen</a></li>
 					<li><a href="index.html#faq">FAQ</a></li>
-					<li class="nav-cta-mobile"><a class="btn btn-primary" href="aanmelden.html">Meld je aan</a></li>
+					<li class="nav-cta-mobile"><a class="btn btn-primary" href="aanmelden.html">Ik wil meer info over de testfase</a></li>
 				</ul>
 			</nav>
 			<div class="header-actions">
@@ -48,7 +53,7 @@
 					<svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
 					<svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
 				</button>
-				<a class="btn btn-dark btn-sm header-cta" href="aanmelden.html" aria-current="page">Meld je aan</a>
+				<a class="btn btn-dark btn-sm header-cta" href="aanmelden.html" aria-current="page">Ik wil meer info over de testfase</a>
 			</div>
 		</div>
 	</header>
@@ -67,22 +72,14 @@
 				</ol>
 			</div>
 
-			<!--
-				TODO: zet de deellink van de Airtable-formulierweergave (geen grid-weergave!) in
-				data-airtable-form, als appID/shareID. Als het formulier de velden "type" en "lang" bevat,
-				worden die automatisch ingevuld en verborgen (type = partner, mentor, investor of experienced).
-			-->
-			<div class="form-card" data-tally-form="" data-title="Aanmeldformulier Nudge">
-				<div class="form-fallback" hidden>
-					<strong>Het aanmeldformulier komt eraan.</strong>
-					<p>Nog even geduld, binnenkort kan je je hier aanmelden.</p>
+			<!-- TODO: vervang [LINK INTERESSEFORMULIER] door de link naar het interesseformulier. -->
+			<div class="cta">
+				<p>Nudge zit in een testfase. Wil je meer weten? Laat je gegevens achter, dan neem ik persoonlijk contact met je op.</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="[LINK INTERESSEFORMULIER]" target="_blank" rel="noopener">Ik wil meer info over de testfase
+						<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+					</a>
 				</div>
-				<noscript>
-					<div class="form-fallback">
-						<strong>Schakel JavaScript in</strong>
-						<p>Het aanmeldformulier heeft JavaScript nodig om te laden.</p>
-					</div>
-				</noscript>
 			</div>
 		</div>
 	</main>
@@ -126,7 +123,7 @@
 				</div>
 			</div>
 			<div class="footer-bottom">
-				<p>&copy; 2026 Nudge</p>
+				<p>&copy; 2026 Nudge <a class="footer-legal" href="privacy.html">Privacyverklaring</a></p>
 				<p>Powered by Everloop</p>
 			</div>
 		</div>
