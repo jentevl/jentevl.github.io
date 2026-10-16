@@ -64,7 +64,7 @@
         menuBtn.focus();
       }
     });
-    window.matchMedia('(min-width: 901px)').addEventListener('change', function (e) {
+    window.matchMedia('(min-width: 1161px)').addEventListener('change', function (e) {
       if (e.matches) setMenu(false);
     });
   }
