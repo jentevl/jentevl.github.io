@@ -397,7 +397,9 @@ img, svg { display: block; max-width: 100%; }
   70%, 100% { opacity: 0; transform: scale(2.6); }
 }
 
-.test-section { padding-top: 0; }
+/* .section sets padding-block further down; the extra class makes this win, so the
+   hero's bottom padding is the only gap above the card (same as the gap below it). */
+.section.test-section { padding-top: 0; }
 .test-card {
   display: grid;
   gap: 32px;
@@ -419,7 +421,7 @@ img, svg { display: block; max-width: 100%; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding-block: clamp(40px, 9vw, 128px) clamp(64px, 9vw, 112px);
+  padding-block: clamp(40px, 9vw, 128px) clamp(64px, 9vw, 120px);
 }
 .hero-head { position: relative; }
 
@@ -445,17 +447,12 @@ img, svg { display: block; max-width: 100%; }
   margin-top: 36px;
 }
 
+.hero-pointer { display: none; }
 .hero-art {
   width: 160px;
   margin: -8px 0 8px auto;
   color: var(--doodle);
 }
-.hero-doodle {
-  display: none;
-  position: absolute;
-  pointer-events: none;
-}
-
 @media (min-width: 900px) {
   .hero-art {
     position: absolute;
@@ -464,23 +461,28 @@ img, svg { display: block; max-width: 100%; }
     width: clamp(220px, 28vw, 360px);
     margin: 0;
   }
-  .hero-doodle {
-    display: block;
-    left: -130px;
-    bottom: -90px;
-    width: 220px;
-  }
 }
 
+/* Wide screens: line 2 of the title is indented and the mission text sits in the column
+   left of it, its first line level with the top of "in de juiste". */
 @media (min-width: 1100px) {
   .display .l2 { margin-left: 300px; }
   .hero-mission {
     position: absolute;
     left: 0;
-    bottom: 10px;
-    width: 250px;
+    top: calc(clamp(3rem, 8.6vw, 7rem) * 1.08 + 0.75rem);
+    width: 260px;
     margin: 0;
-    font-size: 0.9375rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  /* Quiet arrow next to "richting.", just above the buttons. */
+  .hero-pointer {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 220px;
   }
 }
 
@@ -490,6 +492,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .float { animation: float 6s ease-in-out infinite; transform-box: fill-box; }
 .float-delay { animation-delay: -3s; }
+.float-slow { animation-duration: 8s; animation-delay: -5s; }
 
 /* ---------- Sections ---------- */
 .section { padding-block: clamp(64px, 9vw, 120px); }
@@ -539,7 +542,6 @@ img, svg { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-height: 340px;
   padding: clamp(24px, 3vw, 32px);
   border-radius: var(--radius-lg);
   background: var(--card);
@@ -555,18 +557,6 @@ a.card:hover { background: var(--card-hover); transform: translateY(-2px); }
   letter-spacing: -0.02em;
 }
 .card p { color: var(--text-muted); }
-.card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  align-self: flex-start;
-  margin-top: auto;
-  padding-top: 16px;
-  color: var(--text);
-  font-weight: 700;
-}
-.card-link svg { width: 18px; height: 18px; transition: transform 0.15s ease; }
-a.card:hover .card-link svg { transform: translateX(3px); }
 
 .note-row {
   display: flex;
@@ -780,122 +770,85 @@ html:not(.js) .step-dot {
 .quote-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 
 /* ---------- Reviews ---------- */
+/* Carousel: three reviews in view, the track scrolls one review at a time.
+   site.js adds the dots, the arrow buttons' behaviour and the auto-advance. */
 .reviews {
   display: flex;
   gap: 16px;
-  overflow: hidden;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Room for the hover lift and focus ring inside the scroll box. */
+  padding-block: 8px;
+  margin-block: -8px;
 }
+.reviews::-webkit-scrollbar { display: none; }
 .review {
-  position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 0 0 calc((100% - 32px) / 3);
   padding: 32px;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface);
-  flex: 0 0 calc((100% - 32px) / 3);
+  scroll-snap-align: start;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.review-mark { width: 32px; height: 24px; color: var(--accent); transform-origin: left bottom; }
+.review:hover { border-color: var(--accent); transform: translateY(-4px); }
+.review-mark { width: 32px; height: 24px; color: var(--accent); }
 .review h3 { font-size: 1.25rem; font-weight: 400; }
 .review p { color: var(--text-body); }
+.review figcaption { margin-top: auto; color: var(--text-muted); font-size: 0.9375rem; }
 .reviews-note { margin-top: 16px; color: var(--text-muted); font-size: 0.875rem; }
-
-/* Spotlight rotation: each review is highlighted for 10s in a 30s loop (3 reviews).
-   Adding a review? Raise --review-cycle to count × 10s and adjust the 33.33% keyframe stops. */
-.review-rotator {
-  --review-cycle: 30s;
-  --review-play: running;
-}
-/* Pause while reading a card (not while on the pause button, or "play" would appear dead). */
-.review-rotator:has(.reviews:hover),
-.review-rotator.is-paused { --review-play: paused; }
-
-.review:nth-child(2), .review-dots i:nth-child(2) { --i: 1; }
-.review:nth-child(3), .review-dots i:nth-child(3) { --i: 2; }
-
-.review-progress {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left center;
-}
 
 .review-controls {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 24px;
 }
-.review-dots { display: flex; gap: 6px; }
+.review-dots { display: flex; gap: 6px; margin-right: 8px; }
 .review-dots i {
+  position: relative;
+  overflow: hidden;
   width: 8px;
   height: 8px;
   border-radius: 999px;
   background: var(--border);
+  transition: width 0.3s ease;
 }
+/* The active dot is a runner: it fills up while auto-play runs, then the carousel moves on
+   (site.js listens for the end of this animation). It only runs while .is-running is set. */
+.review-dots i.is-active { width: 48px; }
+.review-dots i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.review-dots i.is-active::after {
+  animation: review-run var(--review-ms, 7s) linear forwards paused;
+}
+.review-carousel.is-running .review-dots i.is-active::after { animation-play-state: running; }
+@keyframes review-run { to { transform: scaleX(1); } }
+.review-nav,
 .review-toggle { border: 1px solid var(--border); }
+.review-nav:disabled { opacity: 0.4; cursor: default; }
 .review-toggle .icon-play { display: none; }
-.review-rotator.is-paused .review-toggle .icon-pause { display: none; }
-.review-rotator.is-paused .review-toggle .icon-play { display: block; }
-
-.review-rotator.is-running .review,
-.review-rotator.is-running .review-mark,
-.review-rotator.is-running .review-progress,
-.review-rotator.is-running .review-dots i {
-  animation-duration: var(--review-cycle);
-  animation-delay: calc(var(--i, 0) * 10s);
-  animation-iteration-count: infinite;
-  animation-timing-function: ease;
-  animation-play-state: var(--review-play);
-}
-.review-rotator.is-running .review { animation-name: review-spotlight; }
-.review-rotator.is-running .review-mark { animation-name: review-mark-pop; }
-.review-rotator.is-running .review-progress { animation-name: review-progress; animation-timing-function: linear; }
-.review-rotator.is-running .review-dots i { animation-name: review-dot; }
-
-/* `translate` (not `transform`) so it doesn't fight the scroll-reveal transform. */
-@keyframes review-spotlight {
-  0%, 33.34%, 100% {
-    translate: 0 0;
-    border-color: var(--border);
-    background-color: var(--surface);
-    box-shadow: 0 0 0 0 transparent;
-  }
-  3%, 30% {
-    translate: 0 -6px;
-    border-color: var(--accent);
-    background-color: color-mix(in srgb, var(--accent) 5%, var(--surface));
-    box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--accent) 55%, transparent);
-  }
-}
-@keyframes review-mark-pop {
-  0% { transform: scale(1) rotate(0deg); }
-  2% { transform: scale(1.3) rotate(-8deg); }
-  4.5%, 100% { transform: scale(1) rotate(0deg); }
-}
-@keyframes review-progress {
-  0% { transform: scaleX(0); opacity: 1; }
-  33.33% { transform: scaleX(1); opacity: 1; }
-  33.34%, 100% { transform: scaleX(0); opacity: 0; }
-}
-@keyframes review-dot {
-  0%, 33.34%, 100% { width: 8px; background: var(--border); }
-  2%, 31% { width: 28px; background: var(--accent); }
-}
+.review-carousel.is-paused .review-toggle .icon-pause { display: none; }
+.review-carousel.is-paused .review-toggle .icon-play { display: block; }
+/* Everything fits (e.g. only three reviews): no controls needed. */
+.review-carousel.is-static .review-controls { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .review-rotator.is-running .review,
-  .review-rotator.is-running .review-mark,
-  .review-rotator.is-running .review-progress,
-  .review-rotator.is-running .review-dots i { animation: none; }
-  .review-controls { display: none; }
+  .review-toggle { display: none; }
+  .review-dots i.is-active::after { animation: none; transform: none; }
 }
 
 /* ---------- FAQ ---------- */
