@@ -58,6 +58,8 @@
   --quote-bg: var(--surface-dark);
   --quote-border: transparent;
   --form-surface: var(--white);
+  --note-bg: color-mix(in srgb, var(--neon) 14%, var(--bg));
+  --note-border: color-mix(in srgb, var(--neon) 55%, var(--bg));
   --focus: var(--accent-ink);
   --moon-display: block;
   --sun-display: none;
@@ -95,6 +97,8 @@
     --link: var(--accent-ink);
     --doodle: var(--gray-doodle-dark);
     --quote-border: var(--gray-border-dark);
+    --note-bg: color-mix(in srgb, var(--neon) 7%, var(--black));
+    --note-border: color-mix(in srgb, var(--neon) 30%, var(--black));
     --focus: var(--accent-ink);
     --moon-display: none;
     --sun-display: block;
@@ -125,6 +129,8 @@
   --link: var(--accent-ink);
   --doodle: var(--gray-doodle-dark);
   --quote-border: var(--gray-border-dark);
+  --note-bg: color-mix(in srgb, var(--neon) 7%, var(--black));
+  --note-border: color-mix(in srgb, var(--neon) 30%, var(--black));
   --focus: var(--accent-ink);
   --moon-display: none;
   --sun-display: block;
@@ -207,6 +213,7 @@ img, svg { display: block; max-width: 100%; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: 8px;
   min-height: 48px;
   padding: 12px 24px;
@@ -539,7 +546,16 @@ img, svg { display: block; max-width: 100%; }
 .cards {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .cards .card:last-child:nth-child(odd) p { max-width: 52ch; }
+}
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cards .card:last-child:nth-child(odd) { grid-column: auto; }
 }
 .card {
   display: flex;
@@ -567,11 +583,11 @@ a.card:hover { background: var(--card-hover); transform: translateY(-2px); }
   align-items: center;
   justify-content: space-between;
   gap: 16px 32px;
-  margin-top: 16px;
+  margin-top: 24px;
   padding: 24px 32px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--note-border);
   border-radius: var(--radius-lg);
-  background: var(--surface);
+  background: var(--note-bg);
 }
 .note-row p { color: var(--text-muted); }
 .note-row strong { display: block; color: var(--text); font-size: 1.125rem; font-weight: 700; }
@@ -735,6 +751,8 @@ html:not(.js) .step-dot {
 /* Heading left, four short reasons right in a 2×2 grid, separated by thin lines
    (no filled cards, so it reads differently from the audience cards above). */
 .why-layout { display: grid; gap: 32px; }
+/* The reasons already end with their own padding, so less space before "Hoe het werkt". */
+.section.why-section { padding-bottom: clamp(40px, 5vw, 64px); }
 @media (min-width: 900px) {
   .why-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 64px; align-items: start; }
   .why-layout .section-head { margin-bottom: 0; }
@@ -1016,7 +1034,7 @@ html:not(.js) .step-dot {
   font-size: 0.875rem;
 }
 .footer-bottom ul { display: flex; gap: 24px; padding: 0; list-style: none; }
-.footer-legal { margin-left: 16px; color: inherit; font-size: 0.8125rem; text-decoration: none; }
+.footer-legal { display: inline-block; margin-left: 16px; padding-block: 8px; color: inherit; font-size: 0.8125rem; text-decoration: none; }
 .footer-legal:hover { text-decoration: underline; }
 
 /* ---------- Sign-up page ---------- */
@@ -1120,6 +1138,25 @@ html:not(.js) .step-dot {
 .legal ol { display: grid; gap: 10px; padding-left: 1.4em; }
 .legal li::marker { color: var(--accent-ink); }
 .legal strong { color: var(--text); font-weight: 700; }
+
+/* ---------- Tablet & phone ---------- */
+/* Reviews: 2 in view on tablets, 1 on phones (with a peek of the next one, so it's clear you can swipe). */
+@media (max-width: 1023px) {
+  .review { flex-basis: calc((100% - 16px) / 2); }
+}
+@media (max-width: 599px) {
+  .review { flex-basis: 86%; padding: 24px; }
+
+  .card { gap: 8px; }
+  .card-art { width: 96px; height: 64px; }
+  .card h3 { margin-top: 16px; }
+  .note-row { padding: 24px; }
+  .faq .answer { padding-right: 0; }
+
+  /* Sub-pages: the test bar sits in the sticky header, so keep it to one line. */
+  .test-bar p { font-size: 0.875rem; }
+  .test-bar-more { display: none; }
+}
 
 /* ---------- Reveal ---------- */
 .js .reveal {
