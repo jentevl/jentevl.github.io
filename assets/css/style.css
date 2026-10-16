@@ -1151,6 +1151,7 @@ html:not(.js) .step-dot {
   .card-art { width: 96px; height: 64px; }
   .card h3 { margin-top: 16px; }
   .note-row { padding: 24px; }
+  .note-row .btn { flex-shrink: 1; width: 100%; }   /* long labels (English) wrap instead of overflowing */
   .faq .answer { padding-right: 0; }
 
   /* Sub-pages: the test bar sits in the sticky header, so keep it to one line. */
