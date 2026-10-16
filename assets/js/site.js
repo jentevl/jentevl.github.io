@@ -146,8 +146,7 @@
     var nextBtn = carousel.querySelector('[data-review-next]');
     var playBtn = carousel.querySelector('.review-toggle');
     var noMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var AUTO_MS = 7000;
-    var timer = null;
+    var AUTO_MS = 7000; // time per position; also the runner's duration
     var inView = false;
     var holding = false; // pointer over the reviews or keyboard focus inside the carousel
 
@@ -185,12 +184,17 @@
       syncState();
     };
 
+    // The runner (CSS animation on the active dot) only plays while this is true.
     var autoAdvance = function () {
-      clearInterval(timer);
       var running = inView && !holding && !noMotion.matches &&
         !carousel.classList.contains('is-paused') && lastIndex() > 0;
-      if (running) timer = setInterval(function () { goTo(currentIndex() + 1); }, AUTO_MS);
+      carousel.classList.toggle('is-running', running);
     };
+
+    // Runner full: next position. A new active dot starts its own runner from zero,
+    // so the arrows and manual scrolling restart the countdown automatically.
+    carousel.style.setProperty('--review-ms', AUTO_MS + 'ms');
+    dotsBox.addEventListener('animationend', function () { goTo(currentIndex() + 1); });
 
     prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); autoAdvance(); });
     nextBtn.addEventListener('click', function () { goTo(currentIndex() + 1); autoAdvance(); });

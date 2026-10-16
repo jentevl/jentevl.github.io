@@ -815,13 +815,31 @@ html:not(.js) .step-dot {
 }
 .review-dots { display: flex; gap: 6px; margin-right: 8px; }
 .review-dots i {
+  position: relative;
+  overflow: hidden;
   width: 8px;
   height: 8px;
   border-radius: 999px;
   background: var(--border);
-  transition: width 0.3s ease, background-color 0.3s ease;
+  transition: width 0.3s ease;
 }
-.review-dots i.is-active { width: 28px; background: var(--accent); }
+/* The active dot is a runner: it fills up while auto-play runs, then the carousel moves on
+   (site.js listens for the end of this animation). It only runs while .is-running is set. */
+.review-dots i.is-active { width: 48px; }
+.review-dots i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.review-dots i.is-active::after {
+  animation: review-run var(--review-ms, 7s) linear forwards paused;
+}
+.review-carousel.is-running .review-dots i.is-active::after { animation-play-state: running; }
+@keyframes review-run { to { transform: scaleX(1); } }
 .review-nav,
 .review-toggle { border: 1px solid var(--border); }
 .review-nav:disabled { opacity: 0.4; cursor: default; }
@@ -833,6 +851,7 @@ html:not(.js) .step-dot {
 
 @media (prefers-reduced-motion: reduce) {
   .review-toggle { display: none; }
+  .review-dots i.is-active::after { animation: none; transform: none; }
 }
 
 /* ---------- FAQ ---------- */
