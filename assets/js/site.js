@@ -213,9 +213,16 @@
       scrollFrame = requestAnimationFrame(function () { scrollFrame = null; syncState(); });
     }, { passive: true });
 
-    // Pause while someone reads a review (not while on the buttons, or "play" would seem dead).
-    track.addEventListener('mouseenter', function () { holding = true; autoAdvance(); });
-    track.addEventListener('mouseleave', function () { holding = false; autoAdvance(); });
+    // Pause while someone reads a review (not while on the buttons, or "play" would seem dead):
+    // a mouse pauses while hovering, a finger while it touches the reviews. Mouse events alone
+    // don't work on touch screens: a tap fires mouseenter but never mouseleave.
+    var hold = function (on) { holding = on; autoAdvance(); };
+    track.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hold(true); });
+    track.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hold(false); });
+    track.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') hold(true); });
+    ['pointerup', 'pointercancel'].forEach(function (type) {
+      track.addEventListener(type, function (e) { if (e.pointerType !== 'mouse') hold(false); });
+    });
     track.addEventListener('focusin', function () { holding = true; autoAdvance(); });
     track.addEventListener('focusout', function () { holding = false; autoAdvance(); });
 
