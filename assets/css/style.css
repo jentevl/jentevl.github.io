@@ -272,6 +272,7 @@ img, svg { display: block; max-width: 100%; }
 
 .brand {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   color: var(--text);
   text-decoration: none;
@@ -288,7 +289,8 @@ img, svg { display: block; max-width: 100%; }
 }
 .site-nav a {
   display: block;
-  padding: 8px 14px;
+  padding: 8px 12px;
+  white-space: nowrap;
   border-radius: 999px;
   color: var(--text);
   font-size: 0.9375rem;
@@ -319,14 +321,15 @@ img, svg { display: block; max-width: 100%; }
   text-decoration: none;
 }
 .lang-switch:hover { background: var(--card); }
-.header-cta { margin-left: 8px; }
+.header-cta { margin-left: 8px; white-space: nowrap; }
 
 .menu-toggle { display: none; }
 .menu-toggle .icon-close { display: none; }
 .menu-toggle[aria-expanded="true"] .icon-menu { display: none; }
 .menu-toggle[aria-expanded="true"] .icon-close { display: block; }
 
-@media (max-width: 900px) {
+/* Five menu links + language, theme and CTA need about 1160px on one line. */
+@media (max-width: 1160px) {
   .menu-toggle { display: inline-grid; }
   .header-cta { display: none; }
   .site-nav {
@@ -727,6 +730,44 @@ html:not(.js) .step-dot {
   .timeline *, .timeline *::after { transition-delay: 0s !important; animation: none !important; }
   .timeline-head { display: none; }
 }
+
+/* ---------- Why Nudge ---------- */
+/* Heading left, four short reasons right in a 2×2 grid, separated by thin lines
+   (no filled cards, so it reads differently from the audience cards above). */
+.why-layout { display: grid; gap: 32px; }
+@media (min-width: 900px) {
+  .why-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 64px; align-items: start; }
+  .why-layout .section-head { margin-bottom: 0; }
+}
+.why-list {
+  display: grid;
+  gap: 0 40px;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 640px) {
+  .why-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.why-item {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding-block: 28px;
+  border-top: 1px solid var(--border);
+}
+.why-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--dark-green);   /* dark green on neon, readable in light and dark mode */
+}
+.why-icon svg { width: 22px; height: 22px; }
+.why-item h3 { font-size: 1.25rem; font-weight: 400; }
+.why-item p { color: var(--text-muted); }
 
 /* ---------- Quote panel ---------- */
 .quote-panel {
