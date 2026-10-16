@@ -751,6 +751,8 @@ html:not(.js) .step-dot {
 /* Heading left, four short reasons right in a 2×2 grid, separated by thin lines
    (no filled cards, so it reads differently from the audience cards above). */
 .why-layout { display: grid; gap: 32px; }
+/* The reasons already end with their own padding, so less space before "Hoe het werkt". */
+.section.why-section { padding-bottom: clamp(40px, 5vw, 64px); }
 @media (min-width: 900px) {
   .why-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 64px; align-items: start; }
   .why-layout .section-head { margin-bottom: 0; }
