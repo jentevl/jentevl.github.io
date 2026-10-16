@@ -447,13 +447,12 @@ img, svg { display: block; max-width: 100%; }
   margin-top: 36px;
 }
 
+.hero-pointer { display: none; }
 .hero-art {
   width: 160px;
   margin: -8px 0 8px auto;
   color: var(--doodle);
 }
-.hero-nudge { display: none; }
-
 @media (min-width: 900px) {
   .hero-art {
     position: absolute;
@@ -464,29 +463,26 @@ img, svg { display: block; max-width: 100%; }
   }
 }
 
-/* Wide screens: line 2 of the title is indented; the column left of it holds a small
-   "nudge" drawing (top) and the mission text (bottom, level with the last title line). */
+/* Wide screens: line 2 of the title is indented and the mission text sits in the column
+   left of it, its first line level with the top of "in de juiste". */
 @media (min-width: 1100px) {
   .display .l2 { margin-left: 300px; }
-  .hero-aside {
+  .hero-mission {
     position: absolute;
     left: 0;
-    top: calc(clamp(3rem, 8.6vw, 7rem) * 1.08 + 24px);
-    bottom: 10px;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .hero-nudge {
-    display: block;
-    flex: 1 1 0;
-    min-height: 0;
-    width: 100%;
-  }
-  .hero-mission {
+    top: calc(clamp(3rem, 8.6vw, 7rem) * 1.08 + 0.75rem);
+    width: 260px;
     margin: 0;
-    font-size: 0.9375rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  /* Quiet arrow next to "richting.", just above the buttons. */
+  .hero-pointer {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 220px;
   }
 }
 
@@ -496,6 +492,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .float { animation: float 6s ease-in-out infinite; transform-box: fill-box; }
 .float-delay { animation-delay: -3s; }
+.float-slow { animation-duration: 8s; animation-delay: -5s; }
 
 /* ---------- Sections ---------- */
 .section { padding-block: clamp(64px, 9vw, 120px); }
