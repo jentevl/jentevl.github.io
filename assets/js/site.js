@@ -136,29 +136,97 @@
     }
   }
 
-  /* ---------- Review spotlight rotation ---------- */
-  var rotator = document.querySelector('.review-rotator');
-  if (rotator) {
-    // The rotation itself is CSS; JS only starts it once the reviews are on screen
-    // (so the first review gets its full 10s) and wires up the pause button.
-    if ('IntersectionObserver' in window) {
-      var rotatorObserver = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) {
-          rotator.classList.add('is-running');
-          rotatorObserver.disconnect();
-        }
-      }, { rootMargin: '0px 0px -30% 0px' });
-      rotatorObserver.observe(rotator);
-    } else {
-      rotator.classList.add('is-running');
+  /* ---------- Review carousel ---------- */
+  var carousel = document.querySelector('.review-carousel');
+  if (carousel) {
+    var track = carousel.querySelector('.reviews');
+    var slides = track.children;
+    var dotsBox = carousel.querySelector('.review-dots');
+    var prevBtn = carousel.querySelector('[data-review-prev]');
+    var nextBtn = carousel.querySelector('[data-review-next]');
+    var playBtn = carousel.querySelector('.review-toggle');
+    var noMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var AUTO_MS = 7000;
+    var timer = null;
+    var inView = false;
+    var holding = false; // pointer over the reviews or keyboard focus inside the carousel
+
+    // One "step" is a review plus the gap, so every position starts on a review.
+    var stepSize = function () {
+      return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth;
+    };
+    var lastIndex = function () {
+      return Math.max(0, Math.round((track.scrollWidth - track.clientWidth) / stepSize()));
+    };
+    var currentIndex = function () {
+      return Math.round(track.scrollLeft / stepSize());
+    };
+
+    var goTo = function (i) {
+      var last = lastIndex();
+      if (i > last) i = 0;      // after the last review, start over
+      if (i < 0) i = last;
+      track.scrollTo({ left: i * stepSize(), behavior: noMotion.matches ? 'auto' : 'smooth' });
+    };
+
+    var syncState = function () {
+      var i = currentIndex();
+      Array.prototype.forEach.call(dotsBox.children, function (dot, n) {
+        dot.classList.toggle('is-active', n === i);
+      });
+    };
+
+    // A dot per position; rebuilt on resize because the number of reviews in view can change.
+    var buildDots = function () {
+      var count = lastIndex() + 1;
+      dotsBox.textContent = '';
+      for (var n = 0; n < count; n++) dotsBox.appendChild(document.createElement('i'));
+      carousel.classList.toggle('is-static', count < 2);
+      syncState();
+    };
+
+    var autoAdvance = function () {
+      clearInterval(timer);
+      var running = inView && !holding && !noMotion.matches &&
+        !carousel.classList.contains('is-paused') && lastIndex() > 0;
+      if (running) timer = setInterval(function () { goTo(currentIndex() + 1); }, AUTO_MS);
+    };
+
+    prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); autoAdvance(); });
+    nextBtn.addEventListener('click', function () { goTo(currentIndex() + 1); autoAdvance(); });
+
+    if (playBtn) {
+      playBtn.addEventListener('click', function () {
+        var paused = carousel.classList.toggle('is-paused');
+        playBtn.setAttribute('aria-label', paused ? playBtn.dataset.labelPlay : playBtn.dataset.labelPause);
+        autoAdvance();
+      });
     }
 
-    var rotatorToggle = rotator.querySelector('.review-toggle');
-    if (rotatorToggle) {
-      rotatorToggle.addEventListener('click', function () {
-        var paused = rotator.classList.toggle('is-paused');
-        rotatorToggle.setAttribute('aria-label', paused ? rotatorToggle.dataset.labelPlay : rotatorToggle.dataset.labelPause);
-      });
+    var scrollFrame = null;
+    track.addEventListener('scroll', function () {
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(function () { scrollFrame = null; syncState(); });
+    }, { passive: true });
+
+    // Pause while someone reads a review (not while on the buttons, or "play" would seem dead).
+    track.addEventListener('mouseenter', function () { holding = true; autoAdvance(); });
+    track.addEventListener('mouseleave', function () { holding = false; autoAdvance(); });
+    track.addEventListener('focusin', function () { holding = true; autoAdvance(); });
+    track.addEventListener('focusout', function () { holding = false; autoAdvance(); });
+
+    window.addEventListener('resize', function () { buildDots(); autoAdvance(); });
+    buildDots();
+
+    // Only advance while the reviews are on screen.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        autoAdvance();
+      }, { threshold: 0.4 }).observe(carousel);
+    } else {
+      inView = true;
+      autoAdvance();
     }
   }
 

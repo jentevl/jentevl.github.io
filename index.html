@@ -75,7 +75,14 @@
 					<use href="#bubble-l" class="f-accent" x="335" y="135" width="10" height="5.2"/>
 				</svg>
 				<h1 class="display"><span class="l1">Een duwtje,</span> <span class="l2">in de juiste richting.</span></h1>
-				<p class="hero-mission">Soms heb je geen uitgebreid traject nodig. Gewoon een goed gesprek met iemand die al eens in jouw schoenen heeft gestaan.</p>
+				<div class="hero-aside">
+					<svg class="hero-nudge" viewBox="0 0 250 110" aria-hidden="true">
+						<use href="#bubble-l" class="f-accent float" x="4" y="66" width="46" height="24"/>
+						<path class="s-doodle" d="M58 78C112 100 170 70 236 34" stroke-dasharray="5 6"/>
+						<path class="s-doodle" d="M224.1 32.7 236 34 230.7 44.7"/>
+					</svg>
+					<p class="hero-mission">Soms heb je geen uitgebreid traject nodig. Gewoon een goed gesprek met iemand die al eens in jouw schoenen heeft gestaan.</p>
+				</div>
 			</div>
 			<div class="hero-actions">
 				<a class="btn btn-primary" href="aanmelden.html">Ik wil meer info over de testfase
@@ -83,10 +90,6 @@
 				</a>
 				<a class="btn btn-outline" href="#hoe-het-werkt">Hoe werkt het?</a>
 			</div>
-			<svg class="hero-doodle" viewBox="0 0 220 220" aria-hidden="true">
-				<path class="s-doodle" d="M30 190A100 100 0 0 1 150 24"/>
-				<path class="s-doodle" d="M139 17 150 24 140 33"/>
-			</svg>
 		</section>
 
 		<!-- Testfase -->
@@ -118,25 +121,16 @@
 						<svg class="card-art" viewBox="0 0 120 80" aria-hidden="true"><use href="#bubble-r" class="f-accent" x="36.8" y="4" width="64.9" height="33.8" fill-opacity=".5"/><use href="#bubble-l" class="f-accent" x="18.3" y="42.2" width="64.8" height="33.8" fill-opacity=".9"/></svg>
 						<h3>Een concrete vraag</h3>
 						<p>Je zit ergens mee en zoekt iemand die vanuit ervaring met je kan meedenken.</p>
-						<span class="card-link">Zoek een partner
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-						</span>
 					</a>
 					<a class="card reveal" href="aanmelden.html?type=mentor">
 						<svg class="card-art" viewBox="0 0 120 80" aria-hidden="true"><use href="#bubble-l" class="f-accent" x="2" y="34" width="80" height="41.7"/><path class="s-doodle" d="M60 30Q72 12 86 14" stroke-dasharray="3 5"/><use href="#bubble-r" class="f-accent" x="88" y="6" width="28" height="14.6"/></svg>
 						<h3>Een idee aftoetsen</h3>
 						<p>Je wilt je idee, aanpak of volgende stap eens bespreken met iemand die dit al eens heeft meegemaakt.</p>
-						<span class="card-link">Zoek een mentor
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-						</span>
 					</a>
 					<a class="card reveal" href="aanmelden.html?type=investor">
 						<svg class="card-art" viewBox="0 0 120 80" aria-hidden="true"><path class="s-doodle" d="M18 66 54 46 96 22" stroke-dasharray="3 5"/><use href="#bubble-l" class="f-accent" x="7" y="60.3" width="22" height="11.5"/><use href="#bubble-r" class="f-accent" x="37" y="37.1" width="34" height="17.7"/><use href="#bubble-l" class="f-accent" x="72" y="9.5" width="48" height="25"/></svg>
 						<h3>Gewoon even sparren</h3>
 						<p>Je hoeft niet met een uitgewerkt probleem te zitten. Soms wil je gewoon even van gedachten wisselen met iemand die ervaring heeft.</p>
-						<span class="card-link">Zoek een investeerder
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-						</span>
 					</a>
 				</div>
 
@@ -220,55 +214,55 @@
 					<h2 class="h2">Wat starters zeggen</h2>
 				</header>
 
-				<div class="review-rotator">
+				<div class="review-carousel reveal" role="region" aria-roledescription="carousel" aria-label="Ervaringen van starters">
 					<div class="reviews">
-						<figure class="review reveal">
+						<figure class="review">
 							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
 							<blockquote><p>“Het gesprek met Erik gaf me nieuwe inzichten waar ik zelf nog niet aan had gedacht. Heel waardevol om concrete antwoorden te krijgen en tegelijk mijn netwerk uit te breiden.”</p></blockquote>
 							<figcaption>— Patryk - founder of MemorDrop</figcaption>
-							<span class="review-progress" aria-hidden="true"></span>
 						</figure>
-						<figure class="review reveal">
+						<figure class="review">
 							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
 							<h3>Verrassend snel</h3>
 							<blockquote><p>“Tom heeft veel kennis en ervaring in marketing, wat perfect aansloot bij wat ik nodig had. Hij gaf me zeer concrete en bruikbare tips die ik meteen kan toepassen, waardoor ik exact weet hoe ik nu verder kan.”</p></blockquote>
 							<figcaption>— Jarne - founder of Sitetanic</figcaption>
-							<span class="review-progress" aria-hidden="true"></span>
 						</figure>
-						<figure class="review reveal">
+						<figure class="review">
 							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
 							<h3>Waardevol</h3>
 							<blockquote><p>“Super leerrijk en diepgaand gesprek dat me andere perspectieven gaf. Glenn stelde me vragen waar ik zelf eerder nog niet over had nagedacht. Hij was rechtuit maar correct, iets wat ik nodig had. Ik heb zeker het gevoel dat ik er veel uit kon halen.”</p></blockquote>
 							<figcaption>— Mauro - founder HitchH</figcaption>
-							<span class="review-progress" aria-hidden="true"></span>
 						</figure>
-						<figure class="review reveal">
+						<figure class="review">
 							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
 							<h3>Waardevol</h3>
 							<blockquote><p>“Ik heb in een halfuur enorm veel geleerd. Kristof was heel open en eerlijk en voelde me echt gehoord. Hij gaf inzichten waar in mijn sector normaal weinig over gesproken wordt. Ik mocht hem ook altijd sturen als ik meer vragen had. Super positieve ervaring!”</p></blockquote>
 							<figcaption>— Yorn - founder Graaf en Content</figcaption>
-							<span class="review-progress" aria-hidden="true"></span>
 						</figure>
-						<figure class="review reveal">
+						<figure class="review">
 							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
 							<h3>Waardevol</h3>
 							<blockquote><p>“Het was een aangenaam gesprek en Tom sloot met zijn marketingexpertise perfect aan bij waar ik nood aan had. Ik kreeg concrete tips en feedback die me echt vooruit hielpen, en we blijven ook na het gesprek in contact om verder feedback uit te wisselen. Enorm waardevol!”</p></blockquote>
 							<figcaption>— Lawrence - founder of CorDé Fashion</figcaption>
-							<span class="review-progress" aria-hidden="true"></span>
 						</figure>
-							<figure class="review reveal">
+						<figure class="review">
 							<svg class="review-mark" viewBox="0 0 33 24" aria-hidden="true"><path fill="currentColor" d="M0 24V14C0 6 4 1.5 12 0l1.5 3.5C9 5 7 7.5 7 11h6v13H0zm19 0V14c0-8 4-12.5 12-14l1.5 3.5C28 5 26 7.5 26 11h6v13H19z"/></svg>
 							<h3>Waardevol</h3>
 							<blockquote><p>“Het gesprek was beter dan verwacht. Bart begreep goed waar ik naar op zoek was en gaf me meteen concrete contacten mee. We hebben reeds afgesproken om eens in het echt samen te zitten om te zien wat we voor elkaar kunnen doen.”</p></blockquote>
 							<figcaption>— Stijn - founder Panoramiq</figcaption>
-							<span class="review-progress" aria-hidden="true"></span>
 						</figure>
 					</div>
 					<div class="review-controls">
-						<span class="review-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+						<span class="review-dots" aria-hidden="true"></span>
+						<button class="icon-btn review-nav" type="button" data-review-prev aria-label="Vorige review">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+						</button>
 						<button class="icon-btn review-toggle" type="button" aria-label="Animatie pauzeren" data-label-pause="Animatie pauzeren" data-label-play="Animatie afspelen">
 							<svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg>
 							<svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+						</button>
+						<button class="icon-btn review-nav" type="button" data-review-next aria-label="Volgende review">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
 						</button>
 					</div>
 				</div>
